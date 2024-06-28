@@ -1,7 +1,6 @@
 #packages
-from flask import Flask
+from flask import Flask, jsonify
 import datetime
-import json
 
 #*Creating the Flask app. 
 app = Flask(__name__)
@@ -13,7 +12,8 @@ app = Flask(__name__)
 @app.route('/json-data')
 def get_now():
     myDict = {"Time":datetime.datetime.now(), "Author":"Cole Hansen"}
-    return json.dump(myDict)
+    return jsonify(myDict) #This issue I was having was using json.dumps instead of jsonify
+    #*jsonify is a conversion, json.dumps is a file writer
 
 if(__name__ == '__main__'):
-    app.run()
+    app.run(host='localhost', port=5173)
