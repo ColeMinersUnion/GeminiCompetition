@@ -1,0 +1,3 @@
+Start up and connecting the frontend to the backend
+https://www.geeksforgeeks.org/how-to-connect-reactjs-with-flask-api/
+
