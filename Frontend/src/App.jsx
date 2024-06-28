@@ -1,10 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const [data, setData] = useState({
+    time:"",
+    author:"",
+  });
+
+  useEffect(()=>{
+    fetch("/json-data").then((res) =>
+      res.json().then((data) => {
+        setData({
+          time: data.time,
+          author: data.author,
+        });
+      })
+    );
+  }, []);
 
   return (
     <>
@@ -25,6 +41,8 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+      <p>By: {data.author}</p>
+      <p>At: {data.time}</p>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
