@@ -21,7 +21,9 @@ function App() {
       })
     );
   }, []);
+  console.log(data.author);
 
+  
   return (
     <>
       <div>
