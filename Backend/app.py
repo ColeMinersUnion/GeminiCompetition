@@ -1,5 +1,5 @@
 #packages
-from flask import Flask, jsonify
+from flask import Flask
 import datetime
 
 #*Creating the Flask app. 
@@ -13,6 +13,7 @@ app = Flask(__name__)
 def get_now():
     myDict = {"time":datetime.datetime.now(), "author":"Cole Hansen"}
     return myDict #This issue I was having was using json.dumps instead of jsonify
+    #Apparently I don't need the jsonify wrapper, Flask handles it anyway
     #*jsonify is a conversion, json.dumps is a file writer
 
 if(__name__ == '__main__'):
