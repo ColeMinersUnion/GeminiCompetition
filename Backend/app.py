@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 @app.route('/json-data')
 def get_now():
-    myDict = {"Time":datetime.datetime.now(), "Author":"Cole Hansen"}
-    return jsonify(myDict) #This issue I was having was using json.dumps instead of jsonify
+    myDict = {"time":datetime.datetime.now(), "author":"Cole Hansen"}
+    return myDict #This issue I was having was using json.dumps instead of jsonify
     #*jsonify is a conversion, json.dumps is a file writer
 
 if(__name__ == '__main__'):
