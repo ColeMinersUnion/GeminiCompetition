@@ -29,3 +29,38 @@ def get_now():
 
 if(__name__ == '__main__'):
     app.run(host='localhost', port=5173)
+
+""" Code from work to implement
+from flask import Flask, jsonify
+import os
+from datetime import datetime
+import threading
+
+
+app = Flask(__name__, template_folder='./FrontEnd/')
+
+@app.route('/api')
+def index():
+    return jsonify({"time":datetime.now()})
+
+def start():
+    #print(os.getcwd())
+    os.chdir("C:\\Users\\chansen\\Flask-Vite\\FullStack\\FrontEnd")
+    os.system('npx vite --host')
+    
+def run():
+    app.run(host="192.168.1.122", port=5173)
+
+if(__name__ == '__main__'):
+
+    FrontEnd = threading.Thread(target=start)
+    BackEnd = threading.Thread(run)
+
+    FrontEnd.start()
+    BackEnd.start()
+    
+    FrontEnd.join()
+    BackEnd.join()
+    
+    
+"""
