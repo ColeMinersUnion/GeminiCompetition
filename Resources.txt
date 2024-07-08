@@ -1,3 +1,6 @@
 Start up and connecting the frontend to the backend
 https://www.geeksforgeeks.org/how-to-connect-reactjs-with-flask-api/
 
+Notes from 7/8/24
+https://www.geeksforgeeks.org/how-to-make-post-call-to-an-api-using-axios-js-in-javascript/
+https://medium.com/@swati.sharma_216/creating-navbar-using-react-router-63c4e785c2d4
