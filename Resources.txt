@@ -5,3 +5,4 @@ Notes from 7/8/24
 https://www.geeksforgeeks.org/how-to-make-post-call-to-an-api-using-axios-js-in-javascript/
 https://medium.com/@swati.sharma_216/creating-navbar-using-react-router-63c4e785c2d4
 https://github.com/futurice/backend-best-practices
+https://developers.google.com/learn/pathways/solution-ecommerce-serverless-django?hl=en&authuser=3
