@@ -12,7 +12,7 @@ function App() {
   function getData(){
     axios({
       method:"GET",
-      url:"http://localhost:5173/json-data"
+      url:"/api/v1/json-data"
     }).then((response) =>{
       const res = response.data
       console.log(res)
@@ -58,7 +58,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <GemiTextbox></GemiTextbox>
+      <GemiTextbox/>
       
     </>
   )

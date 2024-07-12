@@ -13,17 +13,15 @@ export default function GemiTextbox(){
             <button type="submit" value="Call Gemi" onClick={async() => {
                 const prompt = { content };
                 
-                const res = await fetch("http://localhost:5173/gemi", {
-                    method: "POST",
-                    headers: {
-                        'Content-Type':'application/json'
-                    },
-                    body: JSON.stringify(prompt)
+                await axios.post('/api/v1/gemi', {
+                    Client: 'Vite - Cole',
                 })
-                if(res.ok){
-                    console.log("It Worked")
-                    setContent('')
-                }
+                .then(function(response){
+                    console.log(response);
+                })
+                .then(function(error){
+                    console.error(error);
+                })
             }}>Submit</button>
 
         </form>

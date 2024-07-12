@@ -2,23 +2,24 @@
 from flask import Flask, request, flash
 import datetime
 from GeminiAPI import callGemi
+from flask_cors import CORS
 
 #*Creating the Flask app. 
 app = Flask(__name__)
+CORS(app)
 
 #? In this function, I'm creating a python dictionary, and dumping it into a json format
 #? That way, React can read this Json Data and create responsive front end components based
 #? on said data. 
 
-@app.route('/gemi', methods=['POST', 'GET'])
+@app.route('/api/v1/gemi', methods=['POST'])
 def gemi():
-    prompt = request.json
-    flash(prompt)
-    flash(callGemi(prompt['Prt']))
+    prompt = request.json['Client']
+    print(prompt)
     return 'Success', 200
 
 
-@app.route('/json-data', methods=['GET'])
+@app.route('/api/v1/json-data', methods=['GET'])
 def get_now():
     myDict = {"time":datetime.datetime.now(), "author":"Cole Hansen"}
     return myDict #This issue I was having was using json.dumps instead of jsonify
@@ -28,7 +29,7 @@ def get_now():
 
 
 if(__name__ == '__main__'):
-    app.run(host='localhost', port=5173)
+    app.run(host='localhost', port=5000)
 
 """ Code from work to implement
 from flask import Flask, jsonify
