@@ -14,8 +14,9 @@ CORS(app)
 
 @app.route('/api/v1/gemi', methods=['POST'])
 def gemi():
-    prompt = request.json['Client']
-    print(prompt)
+    prompt = request.json['Prompt']
+    #print(prompt['content'])
+    print(callGemi(prompt['content']))
     return 'Success', 200
 
 

@@ -5,22 +5,26 @@ import textwrap
 from dotenv import load_dotenv
 
 #!Pulls key and configures API
-load_dotenv()
-key = os.getenv('GEMINI_KEY')
 
-#!Configuring the Gemini Model
-genai.configure(api_key=key) 
-model = genai.GenerativeModel('gemini-1.5-flash')
-
-if(__name__ == '__main__'):
-    res = model.generate_content('What skills do I need for a software engineering job?')
-    print(res.text)
 
 def callGemi(prompt):
+    load_dotenv()
+    key = os.getenv('GEMINI_KEY')
+
+    #!Configuring the Gemini Model
+    genai.configure(api_key=key) 
+    model = genai.GenerativeModel('gemini-1.5-flash')
     print(prompt)
     res = model.generate_content(prompt)
     print(res.text)
-    return res.txt
+    return res.text
+
+if(__name__ == '__main__'):
+    #res = model.generate_content('What skills do I need for a software engineering job?')
+    #print(res.text)
+    txt = callGemi('How do I create a dockerfile for a flask webpage?')
+
+
 
 """
 General tips and info. Try to use the flash model so we keep our requests per minute

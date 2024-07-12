@@ -14,7 +14,7 @@ export default function GemiTextbox(){
                 const prompt = { content };
                 
                 await axios.post('/api/v1/gemi', {
-                    Client: 'Vite - Cole',
+                    Prompt: prompt,
                 })
                 .then(function(response){
                     console.log(response);
