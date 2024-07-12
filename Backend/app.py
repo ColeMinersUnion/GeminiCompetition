@@ -36,14 +36,7 @@ def flask():
     app.run(host='10.5.2.191', port=5000)
 
 if(__name__ == '__main__'):
-    FrontEnd = threading.Thread(target=vite)
-    BackEnd = threading.Thread(target=flask)
-
-    FrontEnd.start()
-    BackEnd.start()
-    
-    FrontEnd.join()
-    BackEnd.join()
+    flask()
 """ Code from work to implement
 from flask import Flask, jsonify
 import os
