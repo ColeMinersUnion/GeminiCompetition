@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import GemiTextbox from './modules/GemiText'
+import GemiTextbox from './components/GemiText'
 import './App.css'
 
 function App() {

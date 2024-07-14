@@ -6,7 +6,7 @@ import '../index.css';
 import './css/SignUp.css'
 
 //*Componenets
-import GemiTextbox from '../modules/GemiText';
+import GemiTextbox from '../components/GemiText';
 
 function SignUp(){
     return (
