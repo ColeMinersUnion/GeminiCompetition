@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {createBrowserRouter, Outlet} from 'react-router-dom'
+import {createBrowserRouter, Outlet, RouterProvider} from 'react-router-dom'
 import App from './App.jsx'
 //import Career from './pages/Career.jsx'
 //import JobPrep from './pages/JobPrep.jsx'
@@ -38,7 +38,6 @@ const router = createBrowserRouter([{
 
 //Initializing the webpage
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <RouterProvider router={router}>
+  </RouterProvider>,
 )
