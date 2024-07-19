@@ -29,7 +29,7 @@ def get_now():
     #*jsonify is a conversion, json.dumps is a file writer
 
 if(__name__ == '__main__'):
-    app.run()
+    app.run(host="0.0.0.0", port=8080)
 """ Code from work to implement
 from flask import Flask, jsonify
 import os
