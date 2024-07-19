@@ -1,6 +1,5 @@
 #packages
 from flask import Flask, request, flash
-import threading
 import datetime
 from GeminiAPI import callGemi
 from flask_cors import CORS
@@ -29,14 +28,8 @@ def get_now():
     #Apparently I don't need the jsonify wrapper, Flask handles it anyway
     #*jsonify is a conversion, json.dumps is a file writer
 
-def vite():
-    print(os.getcwd())
-
-def flask():
-    app.run(host='10.5.2.191', port=5000)
-
 if(__name__ == '__main__'):
-    flask()
+    app.run()
 """ Code from work to implement
 from flask import Flask, jsonify
 import os
