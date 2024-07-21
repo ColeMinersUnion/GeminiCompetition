@@ -8,7 +8,7 @@ export default function Navbar(){
                 <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                     <div className="md:flex md:items-center md:gap-12">
-                        <a className="block text-teal-600" href="#">
+                        <Link className="block text-teal-600" to={"/"}>
                         <span className="sr-only">Home</span>
                         <svg className="h-8" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -16,7 +16,7 @@ export default function Navbar(){
                             fill="currentColor"
                             />
                         </svg>
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="hidden md:block">
@@ -29,30 +29,33 @@ export default function Navbar(){
                             </li>
 
                             <li>
-                            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Careers </a>
+                                <Link to={"/Career"}>
+                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Career </a>
+                                </Link>
                             </li>
 
                             <li>
-                            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> History </a>
+                                <Link to={"/Job"}>
+                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Job Planning </a>
+                                </Link>
                             </li>
 
                             <li>
-                            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Services </a>
+                                <Link to={"/Contact"}>
+                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Contact </a>
+                                </Link>
                             </li>
 
-                            <li>
-                            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Projects </a>
-                            </li>
-
-                            <li>
-                            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
-                            </li>
                         </ul>
                         </nav>
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <Link className="sm:flex sm:gap-4" to={"/Signup"}>
+                        <Link className="sm:flex sm:gap-4" to={"/Profile"}>
+                            {/*/<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>*/}
+                            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
+                        </Link>
+                        <Link className="hidden sm:flex" to={"/Login"}>
                         
                             <a
                                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
@@ -61,7 +64,7 @@ export default function Navbar(){
                                 Login
                             </a>
                         </Link>
-                        <div className="hidden sm:flex">
+                        <Link className="hidden sm:flex" to={"/Signup"}>
                             <a
                             className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
                             href="#"
@@ -69,7 +72,7 @@ export default function Navbar(){
                             Register
                             </a>
                         
-                        </div>
+                        </Link>
 
                         <div className="block md:hidden">
                         <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">

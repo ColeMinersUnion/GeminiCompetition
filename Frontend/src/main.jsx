@@ -8,8 +8,13 @@ import App from './App.jsx'
 import SignUp from './pages/SignUp.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+import Login from './pages/LogIn.jsx'
+import JobPrep from './pages/JobPrep.jsx'
+import Career from './pages/Career.jsx'
+import Profile from './pages/Profile.jsx'
 
 import './index.css'
+import Contact from './pages/ContactMe.jsx'
 
 const Layout = () => {
   return (
@@ -32,6 +37,26 @@ const router = createBrowserRouter([{
     {
       path:"/Signup",
       element: <SignUp/>
+    },
+    {
+      path:"/Login",
+      element: <Login/>
+    },
+    {
+      path:"/Job",
+      element: <JobPrep/>
+    },
+    {
+      path:"/Career",
+      element:<Career/>
+    },
+    {
+      path:"/Profile",
+      element:<Profile/>
+    },
+    {
+      path:"/Contact",
+      element:<Contact/>
     }
   ]
 }])
