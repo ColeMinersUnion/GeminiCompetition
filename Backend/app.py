@@ -28,6 +28,16 @@ def get_now():
     #Apparently I don't need the jsonify wrapper, Flask handles it anyway
     #*jsonify is a conversion, json.dumps is a file writer
 
+@app.route('/api/v1/AddUser', methods=['POST'])
+def addUser():
+    first = request.json['FirstName']
+    last = request.json['LastName']
+    email = request.json['Email']
+    Pass = request.json['Pass']
+    return 'User Added', 200
+    
+    
+
 if(__name__ == '__main__'):
     app.run(host="0.0.0.0", port=8080)
 """ Code from work to implement

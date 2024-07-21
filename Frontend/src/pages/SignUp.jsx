@@ -3,6 +3,9 @@
 import '../index.css';
 import './css/SignUp.css'
 
+import {Link} from "react-router-dom"
+import axios from 'axios';
+import { createRoot } from 'react-dom/client';
 //*Componenets
 
 function SignUp(){
@@ -144,21 +147,9 @@ function SignUp(){
                         name="password_confirmation"
                         className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                         />
-                    </div>
+                        <div id="passmatch">
 
-                    <div className="col-span-6">
-                        <label htmlFor="MarketingAccept" className="flex gap-4">
-                        <input
-                            type="checkbox"
-                            id="MarketingAccept"
-                            name="marketing_accept"
-                            className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
-                        />
-
-                        <span className="text-sm text-gray-700">
-                            I want to receive emails about events, product updates and company announcements.
-                        </span>
-                        </label>
+                        </div>
                     </div>
 
                     <div className="col-span-6">
@@ -173,13 +164,13 @@ function SignUp(){
                     <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                         <button
                         className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                        >
+                        onClick={create}>
                         Create an account
                         </button>
 
                         <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                         Already have an account?
-                        <a href="#" className="text-gray-700 underline">Log in</a>.
+                        <Link to={"/Login"} className="text-gray-700 underline">Log in</Link>
                         </p>
                     </div>
                     </form>
@@ -190,6 +181,49 @@ function SignUp(){
             
         </>
     )
+}
+
+function create(){
+    //Read all text fields
+    //Error check all text fields
+    
+    let fn = document.getElementById("FirstName").value;
+    let ln = document.getElementById("LastName").value;
+    let email = document.getElementById("Email").value;
+    let pass = document.getElementById("Password").value;
+    let passagain = document.getElementById("PasswordConfirmation").value;
+
+    if(pass != passagain){
+        const check = createRoot(document.getElementById("PassMatch"));
+        
+        return;
+    }
+    //TODO:
+    //!encrypt password
+    //?check that first, last and email aren't blank
+    //?Check email validity
+    //?Check that text strings don't have SQL thingys
+    let UserInfo = {"FirstName": fn, "LastName": ln, "email": email, "pass": pass};
+    
+    //post new account to backend for postgresql
+    async() => {
+        
+        
+        await axios.post('/api/v1/AddUser', UserInfo)
+        .then(function(response){
+            console.log(response);
+        })
+        .then(function(error){
+            console.error(error);
+        })
+    }
+    //check response. 
+    //Does the user already have an account?
+
+
+    //sign the user in
+    //navigate to profile page. 
+
 }
 
 export default SignUp
