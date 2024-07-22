@@ -14,4 +14,5 @@ Start working with cloud run NOW and google's cloud development suite. Start ear
 Resources from week of 7/22/24
 https://web.dev/learn/privacy/data?continue=https%3A%2F%2Fweb.dev%2Flearn%2Fprivacy%2F%23article-https%3A%2F%2Fweb.dev%2Flearn%2Fprivacy%2Fdata
 ^Privacy practices from google's web.dev^
-
+https://docs.docker.com/compose/
+^sharing resources between images using docker-compose.yml^
