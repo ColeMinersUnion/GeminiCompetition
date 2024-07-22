@@ -16,3 +16,6 @@ https://web.dev/learn/privacy/data?continue=https%3A%2F%2Fweb.dev%2Flearn%2Fpriv
 ^Privacy practices from google's web.dev^
 https://docs.docker.com/compose/
 ^sharing resources between images using docker-compose.yml^
+
+Note to self, consider committing a Vite example to https://github.com/docker/awesome-compose 
+Seems cool, nice to get your name out there and start contributing to open source development. 
