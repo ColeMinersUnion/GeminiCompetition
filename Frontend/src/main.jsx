@@ -16,12 +16,16 @@ import Profile from './pages/Profile.jsx'
 import './index.css'
 import Contact from './pages/ContactMe.jsx'
 
+import { ThemeProvider } from '@material-tailwind/react'
+
 const Layout = () => {
   return (
     <>
-      <Navbar/>
-      <Outlet/>
-      <Footer/>
+      <ThemeProvider>
+        <Navbar/>
+        <Outlet/>
+        <Footer/>
+      </ThemeProvider>
     </>
   );
 };

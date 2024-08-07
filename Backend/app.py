@@ -1,7 +1,7 @@
 #packages
 from flask import Flask, request, flash
 import datetime
-from GeminiAPI import callGemi
+from Backend.Features.GeminiAPI import callGemi
 from flask_cors import CORS
 import os
 
