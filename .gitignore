@@ -2,7 +2,7 @@
 *node_modules/
 *package.json
 *package-lock.json
-
+SampleData/
 # Logs
 logs
 *.log

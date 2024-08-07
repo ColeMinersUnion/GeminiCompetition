@@ -1,32 +1,32 @@
 import os #* For .env variables
 import google.generativeai as genai 
-import pathlib
-import textwrap
 from dotenv import load_dotenv
-from ContentCheck import checkPromptFeedback
+import requests
+from bs4 import BeautifulSoup
 
 #!Pulls key and configures API
 
 
-def callGemi(prompt):
+def jobPostParsing(uri):
     load_dotenv()
     key = os.getenv('GEMINI_KEY')
 
     #!Configuring the Gemini Model
     genai.configure(api_key=key) 
     model = genai.GenerativeModel('gemini-1.5-flash')
-    print(prompt)
-    res = model.generate_content(prompt)
-    if(checkPromptFeedback(res) == -1):
-        print(res.text)
-        return res.text
-    else:
-        return "Your request was flagged for inappropriate content"
+    
+    response = requests.get(uri)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    res = model.generate_content('Summarize this job posting.\n' + soup.prettify())
+    print(res.text)
+    return res.text
+
 
 if(__name__ == '__main__'):
     #res = model.generate_content('What skills do I need for a software engineering job?')
     #print(res.text)
-    txt = callGemi('How do I create a dockerfile for a flask webpage?')
+    txt = jobPostParsing("https://www.google.com/about/careers/applications/jobs/results/117794194642084550-software-engineer-iii-mobile-ios-youtube?skills=Computer%20Programming#!t=jo&jid=127025001&")
 
 
 
