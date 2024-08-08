@@ -1,97 +1,64 @@
 import { Link } from "react-router-dom";
+import '/workspaces/GeminiCompetition/Frontend/src/pages/css/Navbar.css';
+import homeIcon from '/workspaces/GeminiCompetition/Frontend/images/logo.jpeg'; // Update the path to your image file
 
-export default function Navbar(){
-    
+
+export default function Navbar() {
     return (
         <>
-           <header className="bg-white">
+            <header className="bg-white">
                 <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
-                    <div className="md:flex md:items-center md:gap-12">
-                        <Link className="block text-teal-600" to={"/"}>
-                        <span className="sr-only">Home</span>
-                        <svg className="h-8" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                            d="M0.41 10.3847C1.14777 7.4194 2.85643 4.7861 5.2639 2.90424C7.6714 1.02234 10.6393 0 13.695 0C16.7507 0 19.7186 1.02234 22.1261 2.90424C24.5336 4.7861 26.2422 7.4194 26.98 10.3847H25.78C23.7557 10.3549 21.7729 10.9599 20.11 12.1147C20.014 12.1842 19.9138 12.2477 19.81 12.3047H19.67C19.5662 12.2477 19.466 12.1842 19.37 12.1147C17.6924 10.9866 15.7166 10.3841 13.695 10.3841C11.6734 10.3841 9.6976 10.9866 8.02 12.1147C7.924 12.1842 7.8238 12.2477 7.72 12.3047H7.58C7.4762 12.2477 7.376 12.1842 7.28 12.1147C5.6171 10.9599 3.6343 10.3549 1.61 10.3847H0.41ZM23.62 16.6547C24.236 16.175 24.9995 15.924 25.78 15.9447H27.39V12.7347H25.78C24.4052 12.7181 23.0619 13.146 21.95 13.9547C21.3243 14.416 20.5674 14.6649 19.79 14.6649C19.0126 14.6649 18.2557 14.416 17.63 13.9547C16.4899 13.1611 15.1341 12.7356 13.745 12.7356C12.3559 12.7356 11.0001 13.1611 9.86 13.9547C9.2343 14.416 8.4774 14.6649 7.7 14.6649C6.9226 14.6649 6.1657 14.416 5.54 13.9547C4.4144 13.1356 3.0518 12.7072 1.66 12.7347H0V15.9447H1.61C2.39051 15.924 3.154 16.175 3.77 16.6547C4.908 17.4489 6.2623 17.8747 7.65 17.8747C9.0377 17.8747 10.392 17.4489 11.53 16.6547C12.1468 16.1765 12.9097 15.9257 13.69 15.9447C14.4708 15.9223 15.2348 16.1735 15.85 16.6547C16.9901 17.4484 18.3459 17.8738 19.735 17.8738C21.1241 17.8738 22.4799 17.4484 23.62 16.6547ZM23.62 22.3947C24.236 21.915 24.9995 21.664 25.78 21.6847H27.39V18.4747H25.78C24.4052 18.4581 23.0619 18.886 21.95 19.6947C21.3243 20.156 20.5674 20.4049 19.79 20.4049C19.0126 20.4049 18.2557 20.156 17.63 19.6947C16.4899 18.9011 15.1341 18.4757 13.745 18.4757C12.3559 18.4757 11.0001 18.9011 9.86 19.6947C9.2343 20.156 8.4774 20.4049 7.7 20.4049C6.9226 20.4049 6.1657 20.156 5.54 19.6947C4.4144 18.8757 3.0518 18.4472 1.66 18.4747H0V21.6847H1.61C2.39051 21.664 3.154 21.915 3.77 22.3947C4.908 23.1889 6.2623 23.6147 7.65 23.6147C9.0377 23.6147 10.392 23.1889 11.53 22.3947C12.1468 21.9165 12.9097 21.6657 13.69 21.6847C14.4708 21.6623 15.2348 21.9135 15.85 22.3947C16.9901 23.1884 18.3459 23.6138 19.735 23.6138C21.1241 23.6138 22.4799 23.1884 23.62 22.3947Z"
-                            fill="currentColor"
-                            />
-                        </svg>
-                        </Link>
-                    </div>
+                        <div className="md:flex md:items-center md:gap-12">
+                            <Link className="block text-teal-600" to={"/"}>
+                                <span className="sr-only">Home</span>
+                                <img src={homeIcon} alt="Home" className="h-8" />
+                            </Link>
+                        </div>
 
-                    <div className="hidden md:block">
-                        <nav aria-label="Global">
-                        <ul className="flex items-center gap-6 text-sm">
-                            <li>
-                                <Link to={"/"}>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75"> About </a>
-                                </Link>
-                            </li>
+                        <div className="hidden md:block">
+                            <nav aria-label="Global">
+                                <ul className="flex items-center gap-6 text-sm">
+                                    <li>
+                                        <Link to={"/"} className="text-gray-500 transition hover:text-gray-500/75"> About </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={"/Career"} className="text-gray-500 transition hover:text-gray-500/75"> Career </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={"/Job"} className="text-gray-500 transition hover:text-gray-500/75"> Job Planning </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={"/Contact"} className="text-gray-500 transition hover:text-gray-500/75"> Contact </Link>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
-                            <li>
-                                <Link to={"/Career"}>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Career </a>
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link to={"/Job"}>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Job Planning </a>
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link to={"/Contact"}>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Contact </a>
-                                </Link>
-                            </li>
-
-                        </ul>
-                        </nav>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                        <Link className="sm:flex sm:gap-4" to={"/Profile"}>
-                            {/*/<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>*/}
-                            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z"/></svg>
-                        </Link>
-                        <Link className="hidden sm:flex" to={"/Login"}>
-                        
-                            <a
-                                className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                                href="#"
-                            >
-                                Login
-                            </a>
-                        </Link>
-                        <Link className="hidden sm:flex" to={"/Signup"}>
-                            <a
-                            className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-                            href="#"
-                            >
-                            Register
-                            </a>
-                        
-                        </Link>
+                        <div className="flex items-center gap-4">
+                            <Link className="sm:flex sm:gap-4" to={"/Profile"}>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed">
+                                    <path d="M226-262q59-42.33 121.33-65.5 62.34-23.17 132.67-23.17 70.33 0 133 23.17T734.67-262q41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM480.31-80q-82.64 0-155.64-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.51T80-480.18q0-82.82 31.5-155.49 31.5-72.66 85.83-127Q251.67-817 324.51-848.5T480.18-880q82.82 0 155.49 31.5 72.66 31.5 127 85.83Q817-708.33 848.5-635.65 880-562.96 880-480.31q0 82.64-31.5 155.64-31.5 73-85.83 127.34Q708.33-143 635.65-111.5 562.96-80 480.31-80Zm-.31-66.67q54.33 0 105-15.83t97.67-52.17q-47-33.66-98-51.5Q533.67-284 480-284t-104.67 17.83q-51 17.84-98 51.5 47 36.34 97.67 52.17 50.67 15.83 105 15.83Zm0-366.66q31.33 0 51.33-20t20-51.34q0-31.33-20-51.33T480-656q-31.33 0-51.33 20t-20 51.33q0 31.34 20 51.34 20 20 51.33 20Zm0-71.34Zm0 369.34Z" />
+                                </svg>
+                            </Link>
+                            <Link className="hidden sm:flex" to={"/Login"}>
+                                <a className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="#"> Login </a>
+                            </Link>
+                            <Link className="hidden sm:flex" to={"/Signup"}>
+                                <a className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600" href="#"> Register </a>
+                            </Link>
+                        </div>
 
                         <div className="block md:hidden">
-                        <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
-                            <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
+                            <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    </div>
                 </div>
-                </header>
+            </header>
         </>
     );
 }

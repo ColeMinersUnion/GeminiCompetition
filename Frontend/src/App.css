@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .side-image {
+    width: 250px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .content {
+    text-align: center;
+    flex-grow: 1;
+    margin: 0 20px; /* Optional: Adjust margin to space out the content */
+  }
+  

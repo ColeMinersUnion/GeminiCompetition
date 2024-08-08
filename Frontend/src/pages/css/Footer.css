@@ -1,0 +1,8 @@
+/* Footer.css */
+.footer-icon {
+    height: 4rem; /* Adjust the size as needed */
+    width: 4rem;  /* Ensure width matches height for a circular shape */
+    border-radius: 50%; /* Makes the icon circular */
+    border: 2px solid teal; /* Adjust color and thickness of the border as needed */
+    object-fit: cover; /* Ensures the image covers the container */
+}
