@@ -16,11 +16,11 @@ export default function JobPostingReview(){
                     const joburl = { content };
                     
                     await axios.post('/api/v1/jobposting', {
-                        joburl: joburl,
+                        Joburl: joburl,
                     })
                     .then(function(response){
+                        //setResp(JSON.stringify(response))
                         console.log(response);
-                        setResp(response);
                     })
                     .then(function(error){
                         console.error(error);

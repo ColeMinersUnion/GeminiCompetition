@@ -6,6 +6,7 @@ export default function GemiTextbox(){
     const [content, setContent] = useState('');
     
     return (
+        <>
         <form>
             <input type="text" value={content} onChange={e=>
                 setContent(e.target.value)}/>
@@ -25,5 +26,6 @@ export default function GemiTextbox(){
             }}>Submit</button>
 
         </form>
+        </>
     );
 }
