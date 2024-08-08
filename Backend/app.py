@@ -21,12 +21,13 @@ def gemi():
     print(callGemi(prompt['content']))
     return 'Success', 200
 
-@app.route('/api/v1/resume', methods=['GET', 'POST'])
+@app.route('/api/v1/resume', methods=['POST'])
 def resume():
-    file = request.files['resume']
+    file = request.files['Resume']
     #?Save file to cloud
     #?Send file path to resumeGemi
     #?Change resumeGemi to pull from google cloud
+
     return 'Sucess', 200
 
 @app.route('/api/v1/jobposting', methods=['POST'])
