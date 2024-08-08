@@ -1,5 +1,9 @@
+import JobPostingReview from "../components/JobPosting";
+
 function JobPrep(){
-    return <></>
+    return (<>
+        <JobPostingReview/>
+        </>);
 }
 
 export default JobPrep;

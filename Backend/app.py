@@ -1,9 +1,9 @@
 #packages
 from flask import Flask, request
 import datetime
-from Backend.Features.GeminiAPI import callGemi
-from Backend.Features.ResumeReview import resumeGemi
-from Backend.Features.JobPostParsing import jobPostParsing
+from GeminiAPI import callGemi
+from ResumeReview import resumeGemi
+from JobPostParsing import jobPostParsing
 from flask_cors import CORS
 
 #*Creating the Flask app. 
@@ -32,7 +32,8 @@ def resume():
 @app.route('/api/v1/jobposting', methods=['GET', 'POST'])
 def jobPost():
     url = request.json['joburl']
-    response = jobPostParsing(url)
+    print(url)
+    response = jobPostParsing(url['content'])
     return {'Code': 200, 'Res': response}
 
 
