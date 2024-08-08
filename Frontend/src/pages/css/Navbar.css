@@ -1,0 +1,7 @@
+.block img {
+    height: 60px; /* Adjust the height */
+    width: 60px;  /* Set the width to match the height */
+    border: 2px solid teal; /* Adjust the border thickness and color */
+    border-radius: 50%; /* Make the border circular */
+    object-fit: cover; /* Ensure the image fits within the circle */
+}
