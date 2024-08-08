@@ -6,7 +6,7 @@ import homeIcon from '../../images/logo.jpeg'; // Update the path to your image 
 export default function Navbar() {
     return (
         <>
-            <header className="bg-white">
+            <header className="bg-sky-900">
                 <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                         <div className="md:flex md:items-center md:gap-12">
@@ -20,16 +20,16 @@ export default function Navbar() {
                             <nav aria-label="Global">
                                 <ul className="flex items-center gap-6 text-sm">
                                     <li>
-                                        <Link to={"/"} className="text-gray-500 transition hover:text-gray-500/75"> About </Link>
+                                        <Link to={"/"} className="text-white transition hover:text-gray-500/80"> About </Link>
                                     </li>
                                     <li>
-                                        <Link to={"/Career"} className="text-gray-500 transition hover:text-gray-500/75"> Career </Link>
+                                        <Link to={"/Career"} className="text-white transition hover:text-gray-500/80"> Career </Link>
                                     </li>
                                     <li>
-                                        <Link to={"/Job"} className="text-gray-500 transition hover:text-gray-500/75"> Job Planning </Link>
+                                        <Link to={"/Job"} className="text-white transition hover:text-gray-500/80"> Job Planning </Link>
                                     </li>
                                     <li>
-                                        <Link to={"/Contact"} className="text-gray-500 transition hover:text-gray-500/75"> Contact </Link>
+                                        <Link to={"/Contact"} className="text-white transition hover:text-gray-500/80"> Contact </Link>
                                     </li>
                                 </ul>
                             </nav>

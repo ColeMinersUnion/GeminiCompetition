@@ -1,7 +1,42 @@
+header {
+    background: linear-gradient(to bottom, #004d40, #0d5457); /* Gradient fading from dark gray at the top to lighter gray at the bottom */
+    color: #fff; /* Text color for contrast */
+    padding: 10px 20px; /* Padding for spacing */
+    display: flex; /* Ensure flexbox layout for header items */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Space between logo and nav items */
+}
 .block img {
     height: 60px; /* Adjust the height */
     width: 60px;  /* Set the width to match the height */
     border: 2px solid teal; /* Adjust the border thickness and color */
     border-radius: 50%; /* Make the border circular */
     object-fit: cover; /* Ensure the image fits within the circle */
+}/* Style for images within the navbar */
+/* Navbar Styling */
+.navbar {
+    background-color: #333; /* Dark color for the navbar background */
+    color: #fff; /* Text color for contrast */
+    padding: 10px 20px; /* Padding for spacing */
+    display: flex; /* Ensure flexbox layout for navbar items */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Space between logo and nav items */
+}
+
+/* Navbar Links */
+.navbar a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 15px; /* Space between links */
+    font-size: 16px; /* Font size for links */
+}
+
+.navbar a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+/* Additional Styling for Navbar Items (if needed) */
+.navbar .nav-items {
+    display: flex; /* Flex layout for nav items */
+    gap: 15px; /* Space between nav items */
 }
