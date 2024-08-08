@@ -11,7 +11,7 @@ export default function GemiTextbox(){
             <input type="text" value={content} onChange={e=>
                 setContent(e.target.value)}/>
 
-            <button type="submit" value="Call Gemi" onClick={async() => {
+            <button type="button" value="Call Gemi" onClick={async() => {
                 const prompt = { content };
                 
                 await axios.post('/api/v1/gemi', {

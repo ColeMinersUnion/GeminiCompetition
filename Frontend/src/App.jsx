@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
+import GemiTextbox from './components/GemiText';
 
 function App() {
 
@@ -29,8 +30,6 @@ function App() {
   return (
     <>
       
-      
-
       <p>To get your profile details: </p><button onClick={getData}>Click me</button>
         {profileData && <div>
               <p>Time: {profileData.time}</p>
