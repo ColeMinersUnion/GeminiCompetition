@@ -1,9 +1,10 @@
 #packages
-from flask import Flask, request, flash
+from flask import Flask, request
 import datetime
 from Backend.Features.GeminiAPI import callGemi
+from Backend.Features.ResumeReview import resumeGemi
+from Backend.Features.JobPostParsing import jobPostParsing
 from flask_cors import CORS
-import os
 
 #*Creating the Flask app. 
 app = Flask(__name__)
@@ -19,6 +20,20 @@ def gemi():
     #print(prompt['content'])
     print(callGemi(prompt['content']))
     return 'Success', 200
+
+@app.route('/api/v1/resume', methods=['GET', 'POST'])
+def resume():
+    file = request.files['resume']
+    #?Save file to cloud
+    #?Send file path to resumeGemi
+    #?Change resumeGemi to pull from google cloud
+    return 'Sucess', 200
+
+@app.route('/api/v1/jobposting', methods=['GET', 'POST'])
+def jobPost():
+    url = request.json['joburl']
+    response = jobPostParsing(url)
+    return {'Code': 200, 'Res': response}
 
 
 @app.route('/api/v1/json-data', methods=['GET'])

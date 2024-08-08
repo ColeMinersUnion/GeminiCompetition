@@ -1,9 +1,6 @@
 import os #* For .env variables
 import google.generativeai as genai 
-import pathlib
-import textwrap
 from dotenv import load_dotenv
-from ContentCheck import checkPromptFeedback
 
 #!Pulls key and configures API
 
@@ -17,12 +14,9 @@ def callGemi(prompt):
     model = genai.GenerativeModel('gemini-1.5-flash')
     print(prompt)
     res = model.generate_content(prompt)
-    if(checkPromptFeedback(res) == -1):
-        print(res.text)
-        return res.text
-    else:
-        return "Your request was flagged for inappropriate content"
-
+    print(res.text)
+    return res.text
+    
 if(__name__ == '__main__'):
     #res = model.generate_content('What skills do I need for a software engineering job?')
     #print(res.text)
