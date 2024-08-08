@@ -1,5 +1,5 @@
-import '/workspaces/GeminiCompetition/Frontend/src/pages/css/Footer.css';
-import '/workspaces/GeminiCompetition/Frontend/src/pages/css/Footer.css';
+import '../pages/css/Footer.css';
+import '../pages/css/Footer.css';
 export default function Footer() {
     return (
         <>
@@ -8,7 +8,7 @@ export default function Footer() {
                     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                         <div className = "block">
                         <img 
-                                src="/images/logo.jpeg" 
+                                src="../../images/logo.jpeg" 
                                 alt="Icon" 
                                 className="footer-icon" 
                             />                                <div className="font-medium text-gray-900">

@@ -11,12 +11,6 @@ import { createRoot } from 'react-dom/client';
 function SignUp(){
     return (
         <>
-            {/*
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
-            */}
 
             <section className="bg-white">
             <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
