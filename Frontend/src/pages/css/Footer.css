@@ -1,8 +1,39 @@
-/* Footer.css */
+/* Footer Styling */
+footer {
+    background: linear-gradient(to bottom, #004d40, #00796b); /* Gradient fading from dark cyan at the top to lighter cyan at the bottom */
+    color: #fff; /* Text color for contrast */
+    padding: 20px; /* Padding for spacing */
+    text-align: center; /* Center align text */
+    display: flex; /* Flexbox layout for footer items */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+/* Footer Links */
+footer a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 10px; /* Space between links */
+    font-size: 14px; /* Font size for links */
+}
+
+/* Footer Links on Hover */
+footer a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+/* Section Titles */
+footer .section-title {
+    font-weight: bold; /* Make the section titles bold */
+    font-size: 16px; /* Optional: adjust the size of section titles */
+    margin-bottom: 10px; /* Space below section titles */
+}
+
+/* Style for images within the footer */
 .footer-icon {
-    height: 4rem; /* Adjust the size as needed */
-    width: 4rem;  /* Ensure width matches height for a circular shape */
-    border-radius: 50%; /* Makes the icon circular */
-    border: 2px solid teal; /* Adjust color and thickness of the border as needed */
-    object-fit: cover; /* Ensures the image covers the container */
+    height: 70px; /* Adjust the height */
+    width: 70px;  /* Set the width to match the height */
+    border: 2px solid teal; /* Border thickness and color */
+    border-radius: 50%; /* Make the border circular */
+    object-fit: cover; /* Ensure the image fits within the circle */
 }

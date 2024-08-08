@@ -1,17 +1,74 @@
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
+/* General styling for the app */
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+  padding: 20px;
+}
+
+.side-image {
+  width: 30vw; /* Increase width for a better balance with content */
+  object-fit: cover;
+}
+
+.content {
+  width: 40%;
+  padding: 20px;
+}
+
+/* Profile Data Styling */
+.content p {
+  font-size: 2.5vw; /* Responsive font size based on viewport width */
+  font-weight: 500;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Summary Section Styling */
+.summary-section {
+  margin-top: 0; /* Ensure it starts at the top */
+}
+
+.summary-section h2 {
+  font-size: 3.5vw; /* Responsive font size based on viewport width */
+  font-weight: 700;
+  color: teal;
+  margin-bottom: 15px;
+}
+
+.summary-section p {
+  font-size: 2.5vw; /* Responsive font size based on viewport width */
+  line-height: 1.8;
+  color: #555;
+}
+
+/* Media Queries for Different Screen Sizes */
+@media (min-width: 768px) {
   .side-image {
-    width: 250px; /* Set the desired width */
-    height: auto; /* Maintain aspect ratio */
+    width: 25vw; /* Adjust image width for tablets and larger screens */
   }
-  
-  .content {
-    text-align: center;
-    flex-grow: 1;
-    margin: 0 20px; /* Optional: Adjust margin to space out the content */
+
+  .content p,
+  .summary-section p {
+    font-size: 2vw; /* Smaller font size for larger screens */
   }
-  
+
+  .summary-section h2 {
+    font-size: 3vw; /* Smaller heading size for larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .side-image {
+    width: 20vw; /* Adjust image width for very large screens */
+  }
+
+  .content p,
+  .summary-section p {
+    font-size: 1.5vw; /* Even smaller font size for very large screens */
+  }
+
+  .summary-section h2 {
+    font-size: 2.5vw; /* Smaller heading size for very large screens */
+  }
+}
