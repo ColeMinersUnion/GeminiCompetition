@@ -5,8 +5,11 @@ from GeminiAPI import callGemi
 from ResumeReview import resumeGemi
 from JobPostParsing import jobPostParsing
 from flask_cors import CORS
+from database import database
 
 #*Creating the Flask app. 
+
+SproutDB = database()
 app = Flask(__name__)
 CORS(app)
 
