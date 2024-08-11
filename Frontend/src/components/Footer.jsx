@@ -4,17 +4,15 @@ export default function Footer() {
     return (
         <>
             <footer>
-                <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
-                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                        <div className="block">
-                            <img 
-                                src="../../images/logo.jpeg" 
-                                alt="Icon" 
-                                className="footer-icon" 
-                            />
-                            <div className="font-medium text-white">
-                                Sprout
-                            </div>
+                <div className="footer-container mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+                    <div className="footer-brand">
+                        <img 
+                            src="/images/logo.jpeg" 
+                            alt="Icon" 
+                            className="footer-icon" 
+                        />
+                        <div className="footer-text">
+                            Sprout
                         </div>
                     </div>
 
@@ -59,7 +57,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <p className="text-xs text-gray-500">&copy; 2022. Company Name. All rights reserved.</p>
+                <p className="footer-copy text-xs text-gray-500">&copy; 2022. Company Name. All rights reserved.</p>
             </footer>
         </>
     );
