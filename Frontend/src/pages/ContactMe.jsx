@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '/workspaces/GeminiCompetition/Frontend/src/pages/css/ContactMe.css';
+import '/css/ContactMe.css';
 
 function Contact() {
     const [inquiry, setInquiry] = useState('');
