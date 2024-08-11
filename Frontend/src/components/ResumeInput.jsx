@@ -1,40 +1,21 @@
-import { useState } from 'react'
-import axios from 'axios'
+// src/components/ResumeInput.jsx
+import React, { useState } from 'react';
 
+export default function ResumeInput({ onResumeChange }) {
+    const [resume, setResume] = useState(null);
 
-export default function ResumeInput(){
-    const [content, setContent] = useState(null);
-    const [resp, setResp] = useState('');
-    const uri='/api/v1/resume';
+    const handleChange = (e) => {
+        setResume(e.target.files[0]);
+        onResumeChange(e.target.files[0]);
+    };
 
     return (
-        <>
-        <form>
-            <input type="file" value={content} onChange={e=>
-                setContent(e.target.value)}/>
-
-            <button type="button" value="Resume Reviewer" onClick={async() => {
-                const data ={
-                    Resume: {content}
-                }
-                try {
-                    const response = await axios.post(uri, data);
-                    //console.log('Response:', response.data);
-                    setResp(response.data["Res"]);
-                    setContent('');
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            }}>Submit</button>
-
-        </form>
-            {resp && <div>
-                <p>
-                    {resp}
-                </p>
-            
-            </div>}
-        
-        </>
+        <div className="resume-section">
+            <h2 className="subtitle">Input your resume to be evaluated here:</h2>
+            <input
+                type="file"
+                onChange={handleChange}
+            />
+        </div>
     );
 }
