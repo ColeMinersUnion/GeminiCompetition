@@ -36,4 +36,35 @@ footer .section-title {
     border: 2px solid teal; /* Border thickness and color */
     border-radius: 50%; /* Make the border circular */
     object-fit: cover; /* Ensure the image fits within the circle */
+    margin-bottom: 10px; /* Space below the icon */
+}
+
+/* Footer Brand Section */
+.footer-brand {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between icon and text */
+}
+
+/* Brand Text */
+.footer-brand .footer-text {
+    font-size: 2rem; /* Increase the font size for the brand text */
+    font-weight: bold; /* Make the text bold */
+    color: #fff; /* Text color for contrast */
+}
+
+/* Align Footer Sections */
+footer .mx-auto {
+    max-width: 1200px; /* Set a max-width for larger screens */
+}
+
+/* Align Items in Grid Layout */
+footer .grid {
+    display: grid; /* Ensure grid layout */
+    gap: 20px; /* Space between grid items */
+}
+
+/* Adjust Footer Text Color */
+footer p, footer ul {
+    color: #fff; /* Ensure text color is consistent */
 }
