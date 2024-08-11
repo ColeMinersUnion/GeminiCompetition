@@ -5,11 +5,11 @@ from GeminiAPI import callGemi
 from ResumeReview import resumeGemi
 from JobPostParsing import jobPostParsing
 from flask_cors import CORS
-from database import database
+from JobMatch import jobMatch
+import os
 
 #*Creating the Flask app. 
 
-SproutDB = database()
 app = Flask(__name__)
 CORS(app)
 
@@ -27,10 +27,7 @@ def gemi():
 @app.route('/api/v1/resume', methods=['POST'])
 def resume():
     file = request.files['Resume']
-    #?Save file to cloud
-    #?Send file path to resumeGemi
-    #?Change resumeGemi to pull from google cloud
-
+    
     return 'Sucess', 200
 
 @app.route('/api/v1/jobposting', methods=['POST'])
@@ -43,6 +40,14 @@ def jobPost():
     except(...):
         return 'Failed', 400
 
+@app.route('/api/v1/jobMatch', methods=['POST'])
+def jobMatch():
+    url = request.json['Joburl']
+    print(url)
+    file = request.files['Resume']
+    file.save(os.path.join(app.config['Database'], file.name))
+    resp = jobMatch(url, 'Database/'+file.name)
+    return {'Code': 200, 'Res': resp}
 
 @app.route('/api/v1/json-data', methods=['GET'])
 def get_now():
