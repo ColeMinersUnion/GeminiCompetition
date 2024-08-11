@@ -24,7 +24,7 @@ export default function JobPostingReview() {
 
     const handleSubmit = async () => {
         if (!resume && !jobUrl) {
-            setError('Please provide either a job link or a resume.');
+            setError('Please provide a job link and a resume or only a resume.');
             return;
         }
 
