@@ -11,7 +11,7 @@ def resumeGemi(uploaded_file):
 
     #!Configuring the Gemini Model
     genai.configure(api_key=key) 
-    model = genai.GenerativeModel('gemini-1.5-pro')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     
     #!Uploading the file
     file = genai.upload_file(uploaded_file)
@@ -23,7 +23,7 @@ def resumeGemi(uploaded_file):
 if(__name__ == '__main__'):
     #res = model.generate_content('What skills do I need for a software engineering job?')
     #print(res.text)
-    txt = resumeGemi("SampleData/Resume.jpg")
+    txt = resumeGemi("SampleData/Pitt_Resume.pdf")
 
 
 

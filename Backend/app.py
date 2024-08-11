@@ -55,15 +55,6 @@ def get_now():
     return myDict #This issue I was having was using json.dumps instead of jsonify
     #Apparently I don't need the jsonify wrapper, Flask handles it anyway
     #*jsonify is a conversion, json.dumps is a file writer
-
-@app.route('/api/v1/AddUser', methods=['POST'])
-def addUser():
-    first = request.json['FirstName']
-    last = request.json['LastName']
-    email = request.json['Email']
-    Pass = request.json['Pass']
-    return 'User Added', 200
-    
     
 
 if(__name__ == '__main__'):
