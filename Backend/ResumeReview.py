@@ -14,7 +14,7 @@ def resumeGemi(uploaded_file):
     model = genai.GenerativeModel('gemini-1.5-flash')
     
     #!Uploading the file
-    file = genai.upload_file(uploaded_file)
+    file = genai.get_file(uploaded_file)
     res = model.generate_content([file, 'Please review this resume and offer imporvements if possible.'])
     print(res.text)
     return res.text

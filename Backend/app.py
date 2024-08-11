@@ -7,11 +7,17 @@ from JobPostParsing import jobPostParsing
 from flask_cors import CORS
 from JobMatch import jobMatch
 import os
+from Chat import LiveChat
+import google.generativeai as genai
 
 #*Creating the Flask app. 
 
 app = Flask(__name__)
 CORS(app)
+chatObj = LiveChat()
+latestResume = []
+latestJob = []
+latestMatch = []
 
 #? In this function, I'm creating a python dictionary, and dumping it into a json format
 #? That way, React can read this Json Data and create responsive front end components based
@@ -27,16 +33,21 @@ def gemi():
 @app.route('/api/v1/resume', methods=['POST'])
 def resume():
     file = request.files['Resume']
-    
-    return 'Sucess', 200
+    Stored_file = genai.upload_file(file)
+    response = resumeGemi(Stored_file)
+    latestResume = [{'role':'user', 'parts': 'Please review this resume and offer imporvements if possible.'},
+                   {'role':'model', 'parts': response}]
+    return {'Code': 200, 'Res': response}
 
 @app.route('/api/v1/jobposting', methods=['POST'])
 def jobPost():
     url = request.json['Joburl']
     print(url)
     response = jobPostParsing(url['content'])
+    latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[1]},
+                   {'role':'model', 'parts': response[0]}]
     try: 
-        return {'Code': 200, 'Res': response}
+        return {'Code': 200, 'Res': response[0]}
     except(...):
         return 'Failed', 400
 
@@ -47,8 +58,36 @@ def jobMatch():
     file = request.files['Resume']
     file.save(os.path.join(app.config['Database'], file.name))
     resp = jobMatch(url, 'Database/'+file.name)
+    latestMatch = [{'role':'user', 'parts': 'Is the candidate a good match for the job?'},
+                   {'role':'model', 'parts': resp}]
     return {'Code': 200, 'Res': resp}
 
+
+@app.route('/api/v1/startChat', methods=['POST'])
+def start_chat():
+    from_content = request.json['origin']
+    if (from_content == '1'):
+        chatObj.cache(latestResume)
+    elif (from_content == '2'):
+        chatObj.cache(latestJob)
+    elif (from_content == '3'):
+        chatObj.cache(latestMatch)
+    else:
+        chatObj.cache()     
+    return 200, 'Success'
+    #Now that we've checked the origin, we can start to chat. 
+
+@app.route('/api/v1/chat', methods=['POST'])
+def chat():
+    message = request.json['message']
+    try:
+        response = chatObj.send_message(message['content'])
+        return {'Code': 200, 'Res': response}
+    except():
+        return {'Code': 444, 'Res': "An error occurred."}
+
+
+#!Mostly for testing connections
 @app.route('/api/v1/json-data', methods=['GET'])
 def get_now():
     myDict = {"time":datetime.datetime.now(), "author":"Cole Hansen"}
@@ -59,37 +98,3 @@ def get_now():
 
 if(__name__ == '__main__'):
     app.run(host="0.0.0.0", port=8080)
-""" Code from work to implement
-from flask import Flask, jsonify
-import os
-from datetime import datetime
-import threading
-
-
-app = Flask(__name__, template_folder='./FrontEnd/')
-
-@app.route('/api')
-def index():
-    return jsonify({"time":datetime.now()})
-
-def start():
-    #print(os.getcwd())
-    os.chdir("C:\\Users\\chansen\\Flask-Vite\\FullStack\\FrontEnd")
-    os.system('npx vite --host')
-    
-def run():
-    app.run(host="192.168.1.122", port=5173)
-
-if(__name__ == '__main__'):
-
-    FrontEnd = threading.Thread(target=start)
-    BackEnd = threading.Thread(target=run)
-
-    FrontEnd.start()
-    BackEnd.start()
-    
-    FrontEnd.join()
-    BackEnd.join()
-    
-    
-"""

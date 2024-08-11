@@ -20,7 +20,7 @@ def jobPostParsing(uri):
     
     res = model.generate_content('Summarize this job posting.\n' + soup.prettify())
     print(res.text)
-    return res.text
+    return res.text, soup.prettify()
 
 
 if(__name__ == '__main__'):

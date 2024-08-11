@@ -32,12 +32,12 @@ class LiveChat:
             contents=history,
         )
          
-    
     def send_message(self, msg):
         #*Takes the chat, adds to it, caches it. Returns the response. 
         self.model = genai.GenerativeModel.from_cached_content(cached_content=self.cached_content())
         self.chat = self.model.start_chat()
         response = self.chat.send_message(msg)
+        self.cache(self.chat.history)
         return response.text
 
     
