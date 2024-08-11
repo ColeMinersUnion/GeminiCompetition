@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 #!Pulls key and configures API
 
 
-def resumeGemi(img):
+def resumeGemi(uploaded_file):
     load_dotenv()
     key = os.getenv('GEMINI_KEY')
 
@@ -14,8 +14,7 @@ def resumeGemi(img):
     model = genai.GenerativeModel('gemini-1.5-pro')
     
     #!Uploading the file
-    file = genai.upload_file(img)
-
+    file = genai.upload_file(uploaded_file)
     res = model.generate_content([file, 'Please review this resume and offer imporvements if possible.'])
     print(res.text)
     return res.text

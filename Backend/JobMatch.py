@@ -13,7 +13,7 @@ def jobMatch(uri, img):
 
     #!Configuring the Gemini Model
     genai.configure(api_key=key) 
-    model = genai.GenerativeModel('gemini-1.5-pro')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     
     response = requests.get(uri)
     soup = BeautifulSoup(response.text, 'html.parser')    
