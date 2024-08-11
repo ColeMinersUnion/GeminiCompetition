@@ -16,14 +16,7 @@ class LiveChat:
         self.system_instruction = "You are an expert offering career advice to someone looking for a job."
         self.model = genai.GenerativeModel(model_name=self.model_name, system_instruction=self.system_instruction)
         self.chat = self.model.start_chat()
-        self.cached_content = self.cache()
-
-    def cache(self):
-        self.cached_content = genai.caching.CachedContent.create(
-            model=self.model_name,
-            system_instruction=self.system_instruction,
-            contents=self.chat.history,
-        )      
+        self.cached_content = None
 
     def cache(self, history):
         self.cached_content = genai.caching.CachedContent.create(

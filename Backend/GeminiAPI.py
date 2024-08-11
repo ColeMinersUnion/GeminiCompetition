@@ -3,8 +3,6 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 
 #!Pulls key and configures API
-
-
 def callGemi(prompt):
     load_dotenv()
     key = os.getenv('GEMINI_KEY')

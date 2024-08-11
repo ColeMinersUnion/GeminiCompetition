@@ -72,8 +72,6 @@ def start_chat():
         chatObj.cache(latestJob)
     elif (from_content == '3'):
         chatObj.cache(latestMatch)
-    else:
-        chatObj.cache()     
     return 200, 'Success'
     #Now that we've checked the origin, we can start to chat. 
 
