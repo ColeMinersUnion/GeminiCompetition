@@ -1,5 +1,5 @@
 #packages
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import datetime
 from GeminiAPI import callGemi
 from ResumeReview import resumeGemi
@@ -9,15 +9,23 @@ from JobMatch import jobMatch
 import os
 from Chat import LiveChat
 import google.generativeai as genai
+from werkzeug.utils import secure_filename
 
 #*Creating the Flask app. 
-
+UPLOAD_FOLDER = './Database'
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
 chatObj = LiveChat()
 latestResume = []
 latestJob = []
 latestMatch = []
+
+AllowedExtensions = ['.png', '.jpg', 'jpeg', '.pdf', '.txt']
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in AllowedExtensions
 
 #? In this function, I'm creating a python dictionary, and dumping it into a json format
 #? That way, React can read this Json Data and create responsive front end components based
@@ -32,9 +40,22 @@ def gemi():
 
 @app.route('/api/v1/resume', methods=['POST'])
 def resume():
-    file = request.files['Resume']
-    Stored_file = genai.upload_file(file)
-    response = resumeGemi(Stored_file)
+    #chatgpt code
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    
+    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.save(file_path)
+
+
+    Stored_file = genai.upload_file(file_path)
+    response = resumeGemi(Stored_file.name)
+    print('here')
     latestResume = [{'role':'user', 'parts': 'Please review this resume and offer imporvements if possible.'},
                    {'role':'model', 'parts': response}]
     return {'Code': 200, 'Res': response}
@@ -52,12 +73,24 @@ def jobPost():
         return 'Failed', 400
 
 @app.route('/api/v1/jobMatch', methods=['POST'])
-def jobMatch():
-    url = request.json['Joburl']
-    print(url)
-    file = request.files['Resume']
-    file.save(os.path.join(app.config['Database'], file.name))
-    resp = jobMatch(url, 'Database/'+file.name)
+def JobMatch():
+    
+    
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    
+    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.save(file_path)
+
+    url = request.form.get('Joburl')
+
+    Stored_file = genai.upload_file(file_path)
+    resp = jobMatch(url, Stored_file.name)
     latestMatch = [{'role':'user', 'parts': 'Is the candidate a good match for the job?'},
                    {'role':'model', 'parts': resp}]
     return {'Code': 200, 'Res': resp}

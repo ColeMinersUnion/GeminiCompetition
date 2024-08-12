@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 #!Pulls key and configures API
 
 
-def jobMatch(uri, img):
+def jobMatch(uri, resume):
     load_dotenv()
     key = os.getenv('GEMINI_KEY')
 
@@ -18,7 +18,7 @@ def jobMatch(uri, img):
     response = requests.get(uri)
     soup = BeautifulSoup(response.text, 'html.parser')    
     #!Uploading the file
-    file = genai.upload_file(img)
+    file = genai.get_file(resume)
 
     res = model.generate_content([file, 'Please review this resume and the job posting to see if the candidate described on the resume is a good match for the job. Please describe the reasoning for your choice. The job post: ' + soup.prettify()])
     print(res.text)

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '/workspaces/GeminiCompetition/Frontend/src/pages/css/Career.css'; // Adjust path as needed
+import './css/Career.css'; // Adjust path as needed
 
 function CareerPage() {
     const [chatContent, setChatContent] = useState('');
