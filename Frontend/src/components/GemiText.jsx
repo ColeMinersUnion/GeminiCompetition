@@ -14,7 +14,7 @@ export default function GemiTextbox(){
             <button type="button" value="Call Gemi" onClick={async() => {
                 const prompt = { content };
                 
-                await axios.post('/api/v1/gemi', {
+                await axios.post('https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/gemi', {
                     Prompt: prompt,
                 })
                 .then(function(response){

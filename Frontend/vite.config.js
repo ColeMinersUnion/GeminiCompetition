@@ -9,7 +9,7 @@ export default defineConfig({
     strictPort: true,
     proxy:{
       '/api':{
-        target:'https://sprout-backend-khssbqm7ma-uk.a.run.app/api',
+        target:'https://sprout-backend-khssbqm7ma-uk.a.run.app',
         changeOrigin: true,
         secure: true,
       }
