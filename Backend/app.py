@@ -110,7 +110,7 @@ def start_chat():
 
 @app.route('/api/v1/chat', methods=['POST'])
 def chat():
-    message = request.form.get['message']
+    message = request.form.get('message')
     if 'file'  in request.files:
         file = request.files['file']
         if file.filename == '':
@@ -126,7 +126,7 @@ def chat():
             return {'Code': 444, 'Res': "An error occurred."}
     else:
         try:
-            response = chatObj.send_message(message['content'])
+            response = chatObj.send_message(message)
             return {'Code': 200, 'Res': response}
         except():
             return {'Code': 444, 'Res': "An error occurred."}
@@ -135,20 +135,20 @@ def chat():
 @app.route('/api/v1/salary', methods=['POST'])
 def salary():
     job = request.json['job']
-    JobSalary = callGemi('What is the typical salary range for a' + job['content'])
-    return JobSalary
+    JobSalary = callGemi('What is the typical salary range for a' + job)
+    return {'Res': JobSalary}
 
 @app.route('/api/v1/lob', methods=['POST'])
 def LOB():
     job = request.json['job']
-    JobSalary = callGemi('What is the typical line of business for a' + job['content'])
-    return JobSalary
+    industry = callGemi('What is the typical line of business for a' + job)
+    return {'Res': industry}
 
 @app.route('/api/v1/qualifications', methods=['POST'])
 def qualifications():
     job = request.json['job']
-    JobSalary = callGemi('What are the typical qualifications need to be a' + job['content'])
-    return JobSalary
+    qual = callGemi('What are the typical qualifications need to be a' + job)
+    return {'Res': qual}
 
 #!Mostly for testing connections
 @app.route('/api/v1/json-data', methods=['GET'])
