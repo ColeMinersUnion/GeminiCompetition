@@ -2,26 +2,41 @@ import React, { useState } from 'react';
 import './css/Career.css'; // Adjust path as needed
 
 function CareerPage() {
+    const [careerTitle, setCareerTitle] = useState('');
     const [chatContent, setChatContent] = useState('');
     const [salary, setSalary] = useState('');
     const [lineOfBusiness, setLineOfBusiness] = useState('');
     const [qualifications, setQualifications] = useState('');
     const [userInput, setUserInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // New state for loading
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
         // Handle file upload logic here
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        setIsLoading(true); // Show spinner
         // Handle submit logic here
         console.log('Submitted:', userInput);
         setUserInput('');
+        
+        // Simulate an API call
+        setTimeout(() => {
+            setIsLoading(false); // Hide spinner after simulation
+        }, 2000);
     };
 
     return (
         <div className="career-container">
             <div className="chat-section">
+                <input
+                    type="text"
+                    className="career-title-input"
+                    value={careerTitle}
+                    onChange={e => setCareerTitle(e.target.value)}
+                    placeholder="Enter a career title to get started"
+                />
                 <h2 className="section-title">Career Chat</h2>
                 <textarea
                     className="chat-textarea"
@@ -48,6 +63,7 @@ function CareerPage() {
                         ↑
                     </button>
                 </div>
+                {isLoading && <div className="spinner"></div>} {/* Spinner here */}
             </div>
             <div className="info-sections">
                 <div className="info-box">
