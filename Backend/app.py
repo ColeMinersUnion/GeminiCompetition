@@ -118,6 +118,24 @@ def chat():
         return {'Code': 444, 'Res': "An error occurred."}
 
 
+@app.route('/api/v1/salary', methods=['POST'])
+def salary():
+    job = request.json['job']
+    JobSalary = callGemi('What is the typical salary range for a' + job['content'])
+    return JobSalary
+
+@app.route('/api/v1/lob', methods=['POST'])
+def LOB():
+    job = request.json['job']
+    JobSalary = callGemi('What is the typical line of business for a' + job['content'])
+    return JobSalary
+
+@app.route('/api/v1/qualifications', methods=['POST'])
+def qualifications():
+    job = request.json['job']
+    JobSalary = callGemi('What are the typical qualifications need to be a' + job['content'])
+    return JobSalary
+
 #!Mostly for testing connections
 @app.route('/api/v1/json-data', methods=['GET'])
 def get_now():

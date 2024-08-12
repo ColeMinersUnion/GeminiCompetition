@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import '../pages/css/Navbar.css';
-import homeIcon from '/workspaces/GeminiCompetition/Frontend/public/images/logo.jpeg'; // Update the path to your image file
+import homeIcon from '/images/logo.jpeg'; // Update the path to your image file
 
 
 export default function Navbar() {
