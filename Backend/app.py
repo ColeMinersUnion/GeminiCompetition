@@ -15,7 +15,7 @@ from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = './Database'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-#CORS(app)
+CORS(app)
 chatObj = LiveChat()
 latestResume = []
 latestJob = []

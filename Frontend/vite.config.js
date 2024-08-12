@@ -7,8 +7,9 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'https://sprout-backend-khssbqm7ma-uk.a.run.app',
-        
+        target:'https://sprout-backend-khssbqm7ma-uk.a.run.app/api',
+        changeOrigin: true,
+        secure: false,
       }
 
     }
