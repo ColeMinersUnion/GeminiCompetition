@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import JobLinkInput from './JobLinkInput.jsx';
 import ResumeInput from './ResumeInput.jsx';
-//import '/workspaces/GeminiCompetition/Frontend/src/pages/css/JopPrep.css';
 import '../pages/css/JopPrep.css';
 
 export default function JobPostingReview() {
@@ -40,12 +39,17 @@ export default function JobPostingReview() {
 
         const customHeader = {
             headers: {
-                // Authorization: `Bearer ${getLocalStorageToken()}`,
                 "Content-Type": 'multipart/form-data',
             },
         };
 
         try {
+            const response = await axios.post(uri, formData, customHeader);
+            console.log(response);
+            setResp(response.data["Feedback"]);
+            setFit(response.data["Fit"]);
+            setQuestions(response.data["Questions"]);
+
             if(file && jobUrl){
                 const response = await axios.post(uri, formData, customHeader);
                 //console.log(response);
@@ -63,8 +67,6 @@ export default function JobPostingReview() {
                 setResp(response.data["Res"]);
                 setQuestions(response.data["Questions"]);
             }
-
-            
             setJobUrl('');
             setFile(null);
         } catch (error) {
@@ -113,26 +115,42 @@ export default function JobPostingReview() {
     };
 
     return (
-        <div className="container">
-            <h2 className="subtitle">Here we can see if you're a fit for a job you found!</h2>
+        <div className="container">       
             <div className="main-content">
                 <div className="form-section">
-                    <form>
-                        <JobLinkInput onJobUrlChange={handleJobUrlChange} />
-                        <ResumeInput onResumeChange={handleResumeChange} />
-                        <button type="button" className="submit-button" onClick={handleSubmit}>
+                    <h2 className="subtitle">Here we can see if you're a fit for a job you found!</h2>
+                    <JobLinkInput onJobUrlChange={handleJobUrlChange} />
+                    <ResumeInput onResumeChange={handleResumeChange} />
+
+                    <div className="file-upload-section">
+                        <input
+                            id="file-upload"
+                            type="file"
+                            onChange={handleFileUpload}
+                            className="file-upload-input"
+                        />
+                         <button className="submit-button" onClick={handleSubmit}>
                             Submit
                         </button>
-                    </form>
-                </div>
-                <div className="info-sections">
-                    <div className="fit-section">
-                        <h3 className="subtitle">Are you fit for the Job?</h3>
-                        <p>{fit || "Fit details will be displayed here..."}</p>
                     </div>
-                    <div className="questions-section">
-                        <h3 className="subtitle">Possible Interview Questions:</h3>
-                        <p>{questions || "Possible interview questions will be displayed here..."}</p>
+                </div>
+
+                <div className="info-sections">
+                    <div className="info-box">
+                        <h3 className="info-title">Are you fit for the Job?</h3>
+                        <textarea
+                            className="info-textarea"
+                            value={fit}
+                            readOnly
+                        ></textarea>
+                    </div>
+                    <div className="info-box">
+                        <h3 className="info-title">Possible Interview Questions:</h3>
+                        <textarea
+                            className="info-textarea"
+                            value={questions}
+                            readOnly
+                        ></textarea>
                     </div>
                 </div>
             </div>
@@ -143,7 +161,7 @@ export default function JobPostingReview() {
                 </div>
             )}
 
-            <div className="main-feedback-container">
+            <div className="feedback-container">
                 <div className="feedback-section">
                     <h3 className="subtitle">AI Feedback</h3>
                     <textarea
@@ -162,14 +180,15 @@ export default function JobPostingReview() {
                         />
                         <label htmlFor="file-upload" className="file-upload-label">
                             📎
-                            <input
-                                id="file-upload"
-                                type="file"
-                                onChange={handleFileUpload}
-                                className="file-upload-input"
-                            />
                         </label>
-                        <button className="submit-button" onClick={handleChatSubmit}>Send</button>
+                        <input
+                            id="file-upload"
+                            type="file"
+                            onChange={handleFileUpload}
+                            className="file-upload-input"
+                        />
+                        <button className="arrow-icon" onClick={handleChatSubmit}>↑</button>
+
                     </div>
                     {isLoading && <div className="spinner"></div>} {/* Spinner here */}
                 </div>
