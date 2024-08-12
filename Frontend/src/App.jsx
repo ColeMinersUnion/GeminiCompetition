@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
-import leftImage from '../images/cap.jpeg';
-import rightImage from '../images/suitcase.jpeg';
+import leftImage from '/images/cap.jpeg';
+import rightImage from '/images/suitcase.jpeg';
 
 
 function App() {
