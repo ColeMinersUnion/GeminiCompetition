@@ -15,7 +15,7 @@ export default function JobPostingReview() {
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); // New state for loading
     const [chatted, setChatted] = useState(false);
-    const uri = '/api/v1/jobMatch'; // Updated API endpoint
+    let uri = '/api/v1/jobMatch'; // Updated API endpoint
 
     const handleJobUrlChange = (url) => {
         setJobUrl(url);
@@ -46,12 +46,25 @@ export default function JobPostingReview() {
         };
 
         try {
-            const response = await axios.post(uri, formData, customHeader);
-            console.log(response);
-            setResp(response.data["Feedback"]);
-            setFit(response.data["Fit"]);
-            setResp(response.data["Res"]);
-            setQuestions(response.data["Questions"]);
+            if(file && jobUrl){
+                const response = await axios.post(uri, formData, customHeader);
+                //console.log(response);
+                //setResp(response.data["Feedback"]);
+                setFit(response.data["Fit"]);
+                setResp(response.data["Res"]);
+                setQuestions(response.data["Questions"]);
+            } else if(file){
+                uri = '/api/v1/resume';
+                const response = await axios.post(uri, formData, customHeader);
+                setResp(response.data["Res"]);
+            } else if(jobUrl){
+                uri = '/api/v1/jobposting';
+                const response = await axios.post(uri, formData, customHeader);
+                setResp(response.data["Res"]);
+                setQuestions(response.data["Questions"]);
+            }
+
+            
             setJobUrl('');
             setFile(null);
         } catch (error) {
@@ -66,12 +79,13 @@ export default function JobPostingReview() {
         setIsLoading(true);
         setError('');
         event.preventDefault();
-        initUrl = '/api/v1/startChat';
+        const initUrl = '/api/v1/startChat';
         if(!chatted){
             try{
                 const initChat = await axios.post(initUrl, {
                     lastMsg: resp,
                 });
+                console.log(initChat)
             } catch (error) {
                 console.error('Error:', error);
                 setError('An error occurred while processing your request. Please try again.');
@@ -80,9 +94,9 @@ export default function JobPostingReview() {
             }
         }
 
-        charUrl = '/api/v1/chat';
+        let chatUrl = '/api/v1/chat';
         try{
-            const response = await axios.post(charUrl, {
+            const response = await axios.post(chatUrl, {
                 message: userInput,
             })
             console.log(response.data['Res'])
@@ -155,7 +169,7 @@ export default function JobPostingReview() {
                                 className="file-upload-input"
                             />
                         </label>
-                        <button className="submit-button">Send</button>
+                        <button className="submit-button" onClick={handleChatSubmit}>Send</button>
                     </div>
                     {isLoading && <div className="spinner"></div>} {/* Spinner here */}
                 </div>

@@ -62,9 +62,8 @@ def resume():
 
 @app.route('/api/v1/jobposting', methods=['POST'])
 def jobPost():
-    url = request.json['Joburl']
-    print(url)
-    response = jobPostParsing(url['content'])
+    url = request.form.get('Joburl')
+    response = jobPostParsing(url)
     latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[2]},
                    {'role':'model', 'parts': response[0]}]
     try: 
@@ -99,11 +98,13 @@ def JobMatch():
 @app.route('/api/v1/startChat', methods=['POST'])
 def start_chat():
     chatObj.history = []
-    chatHistory = request.form.get('lastMsg')
+    chatHistory = request.json['lastMsg']
+    print(chatHistory)
+    print(type(chatHistory))
     if (chatHistory == ""):
-        return 201, 'Success'
-    chatObj.append({'role':'model', 'parts':chatHistory})
-    return 200, 'Success'
+        return {'Code': 201, 'Res': 'Success'}
+    chatObj.history.append({'role':'model', 'parts':chatHistory})
+    return {'Code': 200, 'Res': chatObj.history, 'Input': chatHistory}
     #Now that we've checked the origin, we can start to chat. 
 
 @app.route('/api/v1/chat', methods=['POST'])

@@ -21,6 +21,7 @@ class LiveChat:
          
     def send_message(self, msg):
         #*Takes the chat, adds to it, caches it. Returns the response.
+        print(self.history)
         self.chat = self.model.start_chat(history=self.history)
         response = self.chat.send_message(msg)
         self.history.append({'role':'user', 'parts': msg})
@@ -32,7 +33,7 @@ class LiveChat:
         self.chat = self.model.start_chat(history=self.history)
         file = genai.get_file(filepath)
         response = self.chat.send_message([file, msg])
-        self.history.append({'role':'user', 'parts': msg})
+        self.history.append({'role':'user', 'parts':[file, msg]})
         self.history.append({'role':'model', 'parts':response.text})
     
 
