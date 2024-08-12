@@ -14,6 +14,7 @@ export default function JobPostingReview() {
     const [error, setError] = useState('');
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); // New state for loading
+    const [chatted, setChatted] = useState(false);
     const uri = '/api/v1/jobMatch'; // Updated API endpoint
 
     const handleJobUrlChange = (url) => {
@@ -59,6 +60,42 @@ export default function JobPostingReview() {
         } finally {
             setIsLoading(false); // Hide spinner
         }
+    };
+
+    const handleChatSubmit = async(event) => {
+        setIsLoading(true);
+        setError('');
+        event.preventDefault();
+        initUrl = '/api/v1/startChat';
+        if(!chatted){
+            try{
+                const initChat = await axios.post(initUrl, {
+                    lastMsg: resp,
+                });
+            } catch (error) {
+                console.error('Error:', error);
+                setError('An error occurred while processing your request. Please try again.');
+            } finally {
+                setIsLoading(false); // Hide spinner
+            }
+        }
+
+        charUrl = '/api/v1/chat';
+        try{
+            const response = await axios.post(charUrl, {
+                message: userInput,
+            })
+            console.log(response.data['Res'])
+            setResp(response.data['Res'])
+            setUserInput('');
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An error ocurrrend while processing chat. Please try again');
+        } finally {
+            setIsLoading(false);
+        }
+
+
     };
 
     return (

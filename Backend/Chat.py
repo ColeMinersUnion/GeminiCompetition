@@ -18,15 +18,6 @@ class LiveChat:
         self.chat = self.model.start_chat()
         self.cached_content = None
         self.history = []
-
-    def cache(self, history):
-        self.cached_content = genai.caching.CachedContent.create(
-            model=self.model_name,
-            system_instruction=self.system_instruction,
-            contents=history,
-        )
-        self.model = genai.GenerativeModel.from_cached_content(cached_content=self.cached_content())
-
          
     def send_message(self, msg):
         #*Takes the chat, adds to it, caches it. Returns the response.
@@ -38,13 +29,11 @@ class LiveChat:
         return response.text
     
     def msg_attachment(self, msg, filepath):
-        if( self.cached_content != None):
-            self.model = genai.GenerativeModel.from_cached_content(cached_content=self.cached_content())
-        self.chat = self.model.start_chat()
+        self.chat = self.model.start_chat(history=self.history)
         file = genai.get_file(filepath)
         response = self.chat.send_message([file, msg])
-        self.cache(self.chat.history)
-
+        self.history.append({'role':'user', 'parts': msg})
+        self.history.append({'role':'model', 'parts':response.text})
     
 
 

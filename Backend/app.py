@@ -98,13 +98,11 @@ def JobMatch():
 
 @app.route('/api/v1/startChat', methods=['POST'])
 def start_chat():
-    from_content = request.json['origin']
-    if (from_content == '1'):
-        chatObj.cache(latestResume)
-    elif (from_content == '2'):
-        chatObj.cache(latestJob)
-    elif (from_content == '3'):
-        chatObj.cache(latestMatch)
+    chatObj.history = []
+    chatHistory = request.form.get('lastMsg')
+    if (chatHistory == ""):
+        return 201, 'Success'
+    chatObj.append({'role':'model', 'parts':chatHistory})
     return 200, 'Success'
     #Now that we've checked the origin, we can start to chat. 
 
