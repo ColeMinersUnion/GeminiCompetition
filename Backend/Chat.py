@@ -26,12 +26,21 @@ class LiveChat:
         )
          
     def send_message(self, msg):
-        #*Takes the chat, adds to it, caches it. Returns the response. 
-        self.model = genai.GenerativeModel.from_cached_content(cached_content=self.cached_content())
+        #*Takes the chat, adds to it, caches it. Returns the response.
+        if( self.cached_content != None):
+            self.model = genai.GenerativeModel.from_cached_content(cached_content=self.cached_content())
         self.chat = self.model.start_chat()
         response = self.chat.send_message(msg)
         self.cache(self.chat.history)
         return response.text
+    
+    def msg_attachment(self, msg, filepath):
+        if( self.cached_content != None):
+            self.model = genai.GenerativeModel.from_cached_content(cached_content=self.cached_content())
+        self.chat = self.model.start_chat()
+        file = genai.get_file(filepath)
+        response = self.chat.send_message([file, msg])
+        self.cache(self.chat.history)
 
     
 
