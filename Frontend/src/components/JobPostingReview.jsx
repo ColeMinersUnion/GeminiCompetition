@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import JobLinkInput from './JobLinkInput.jsx';
+import { Button } from '@material-tailwind/react'
 import ResumeInput from './ResumeInput.jsx';
 import '../pages/css/JopPrep.css';
 
@@ -44,12 +45,6 @@ export default function JobPostingReview() {
         };
 
         try {
-            const response = await axios.post(uri, formData, customHeader);
-            console.log(response);
-            setResp(response.data["Feedback"]);
-            setFit(response.data["Fit"]);
-            setQuestions(response.data["Questions"]);
-
             if(file && jobUrl){
                 const response = await axios.post(uri, formData, customHeader);
                 //console.log(response);
@@ -78,10 +73,14 @@ export default function JobPostingReview() {
     };
 
     const handleChatSubmit = async(event) => {
+
+        const formData = new FormData();
+        if(userInput) formData.append('message', userInput);
         setIsLoading(true);
         setError('');
         event.preventDefault();
         const initUrl = '/api/v1/startChat';
+        
         if(!chatted){
             try{
                 const initChat = await axios.post(initUrl, {
@@ -95,12 +94,18 @@ export default function JobPostingReview() {
                 setIsLoading(false); // Hide spinner
             }
         }
+        setIsLoading(true);
+
+        const customHeader = {
+            headers: {
+                "Content-Type": 'multipart/form-data',
+            },
+        };
 
         let chatUrl = '/api/v1/chat';
         try{
-            const response = await axios.post(chatUrl, {
-                message: userInput,
-            })
+            console.log(userInput)
+            const response = await axios.post(chatUrl, formData, customHeader)
             console.log(response.data['Res'])
             setResp(response.data['Res'])
             setUserInput('');
@@ -129,21 +134,14 @@ export default function JobPostingReview() {
                             onChange={handleFileUpload}
                             className="file-upload-input"
                         />
-                         <button className="submit-button" onClick={handleSubmit}>
+                         <Button className="sub-button" onClick={handleSubmit}>
                             Submit
-                        </button>
+                        </Button>
                     </div>
                 </div>
 
                 <div className="info-sections">
-                    <div className="info-box">
-                        <h3 className="info-title">Are you fit for the Job?</h3>
-                        <textarea
-                            className="info-textarea"
-                            value={fit}
-                            readOnly
-                        ></textarea>
-                    </div>
+                    
                     <div className="info-box">
                         <h3 className="info-title">Possible Interview Questions:</h3>
                         <textarea
@@ -161,7 +159,7 @@ export default function JobPostingReview() {
                 </div>
             )}
 
-            <div className="feedback-container">
+            <div className="main-feedback-container">
                 <div className="feedback-section">
                     <h3 className="subtitle">AI Feedback</h3>
                     <textarea
