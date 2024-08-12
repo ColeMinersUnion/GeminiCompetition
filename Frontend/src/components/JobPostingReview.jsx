@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import JobLinkInput from './JobLinkInput.jsx';
 import ResumeInput from './ResumeInput.jsx';
-import '/workspaces/GeminiCompetition/Frontend/src/pages/css/JopPrep.css';
+//import '/workspaces/GeminiCompetition/Frontend/src/pages/css/JopPrep.css';
+import '../pages/css/JopPrep.css';
 
 export default function JobPostingReview() {
     const [jobUrl, setJobUrl] = useState('');
