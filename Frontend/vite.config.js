@@ -10,7 +10,7 @@ export default defineConfig({
     port: 8000,
     proxy:{
       '/api':{
-        target:'http://localhost:8080',
+        target:'https://sprout-backend-khssbqm7ma-uk.a.run.app',
         changeOrigin: true,
         secure: false,
       }
