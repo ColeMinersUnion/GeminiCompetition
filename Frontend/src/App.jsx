@@ -36,12 +36,7 @@ function App() {
       <img src={leftImage} alt="Left" className="side-image" />
       
       <div className="content">
-        {profileData && (
-          <div>
-            <p>Time: {profileData.time}</p>
-            <p>Author: {profileData.author}</p>
-          </div>
-        )}
+        
         <div className="summary-section">
           <h2>Welcome to Sprout!</h2>
           <p>Your journey from college to career starts here. At Sprout, we are dedicated to 
