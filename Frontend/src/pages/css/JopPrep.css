@@ -1,45 +1,97 @@
-/* src/pages/css/JobPrep.css */
-
+/* Global Styles */
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
+/* Container Styling */
 .container {
-    max-width: 1200px; /* Set a maximum width for larger screens */
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 0 20px; /* Add horizontal padding to shift content away from edges */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.error-message {
-    margin-top: 20px;
-    padding: 10px;
-    color: #d9534f; /* Bootstrap danger color */
-    background-color: #f2dede;
-    border: 1px solid #ebccd1;
-    border-radius: 4px;
-    max-width: 500px; /* Set a maximum width */
-    text-align: left; /* Align text inside the box to the left */
-    margin-left: 0; /* Align box to the left */
-    margin-right: auto; /* Prevent box from spanning full width */
-}
-
-.main-feedback-container {
-    margin-top: 20px;
+/* Main Content Styling */
+.main-content {
     display: flex;
-    gap: 20px; /* Add space between boxes */
-    align-items: flex-start; /* Align items to the start of the container */
-    /* Ensures that the container does not exceed the width of the parent */
-    max-width: calc(100% - 40px); /* Adjusted max-width to include padding */
+    justify-content: space-between; /* Space between form and info sections */
 }
 
-.feedback-section {
-    flex: 2; /* Takes up more space compared to info-sections */
-    padding: 10px;
+/* Form Section Styling */
+.form-section {
+    flex: 2; /* Occupies two-thirds of the space */
+    margin-right: 20px;
+}
+
+/* Info Sections Styling */
+.info-sections {
+    flex: 1; /* Occupies one-third of the space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between Fit and Questions sections */
+}
+
+/* Fit and Questions Sections Styling */
+.fit-section, .questions-section {
+    padding: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: #333; /* Consistent text color */
+    overflow-y: auto; /* Make sections scrollable if content overflows */
+}
+
+/* Info Box Styling */
+.info-box {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: #333; /* Consistent text color */
+    overflow: hidden; /* Prevents overflow beyond the box */
+}
+
+/* Info Title Styling */
+.info-title {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Info Textarea Styling */
+.info-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #666; /* Gray text color */
+    resize: none; /* Disable resizing */
+    overflow-y: auto; /* Adds scrollbar if needed */
+}
+
+/* Feedback Section Styling */
+.main-feedback-container {
+    margin-top: 20px;
+}
+
+.feedback-section {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: #333; /* Updated text color for better readability */
+    position: relative;
+    overflow-y: auto; /* Make feedback area scrollable if content overflows */
 }
 
 .feedback-textarea {
@@ -48,56 +100,139 @@ body {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    overflow-y: auto; /* Make the textarea scrollable if content overflows */
-}
-
-.info-sections {
-    flex: 1; /* Takes up remaining space */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between sections */
-}
-
-.fit-section, .questions-section {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-.subtitle {
-    font-size: 1.25rem; /* Slightly larger subtitle text */
-    margin-top: 20px;
+    overflow-y: auto;
+    font-size: 1rem;
+    background-color: #fff;
     margin-bottom: 10px;
-    font-weight: bold; /* Make subtitle text bold */
 }
-/* src/pages/css/JobPrep.css */
 
+/* Chat Input Bar Styling */
+.chat-input-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden; /* Prevents content from overflowing */
+}
+
+/* Input and File Upload Styling */
+.chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    font-size: 1rem;
+    overflow-y: auto; /* Make input scrollable if needed */
+}
+
+/* Hide default file input */
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-label {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.file-upload-label:hover {
+    background-color: #ccc; /* Darken on hover */
+}
+
+/* Submit Button Styling */
 .submit-button {
     display: inline-block;
-    padding: 10px 20px; /* Add padding for better size */
-    font-size: 1rem; /* Set a readable font size */
-    font-weight: bold; /* Make the text bold */
-    color: #fff; /* Text color */
-    background-color: teal; /* Button background color */
-    border: none; /* Remove default border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    text-align: center; /* Center text */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
-    margin-top: 10px; /* Add margin for spacing */
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2c7a7b; /* Teal color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
 }
 
 .submit-button:hover {
-    background-color: rgb(1, 84, 84); /* Darker color on hover */
+    background-color: #285e61; /* Darker teal on hover */
 }
 
 .submit-button:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5); /* Add focus ring */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(1, 84, 84, 0.5);
 }
 
 .submit-button:disabled {
-    background-color: #c0c0c0; /* Gray background for disabled state */
-    cursor: not-allowed; /* Show a not-allowed cursor */
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+}
+
+/* Error Message Styling */
+.error-message {
+    margin-top: 20px;
+    padding: 15px;
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    max-width: 500px;
+    text-align: left;
+}
+
+/* Subtitle Styling */
+.subtitle {
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+/* Loading Spinner Styles */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Light border */
+    border-left: 4px solid #2c7a7b; /* Teal border */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Spin Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Loading Container */
+.loading-container {
+    position: relative; /* Ensure spinner is positioned correctly */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Stack form and info sections vertically */
+    }
+
+    .form-section, .info-sections {
+        width: 100%; /* Full width for both sections */
+        margin-right: 0; /* Remove margin on smaller screens */
+    }
+
+    .submit-button {
+        width: 100%;
+    }
 }
