@@ -65,10 +65,10 @@ def jobPost():
     url = request.json['Joburl']
     print(url)
     response = jobPostParsing(url['content'])
-    latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[1]},
+    latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[2]},
                    {'role':'model', 'parts': response[0]}]
     try: 
-        return {'Code': 200, 'Res': response[0]}
+        return {'Code': 200, 'Res': response[0], 'Questions': response[1]}
     except(...):
         return 'Failed', 400
 
@@ -93,7 +93,7 @@ def JobMatch():
     resp = jobMatch(url, Stored_file.name)
     latestMatch = [{'role':'user', 'parts': 'Is the candidate a good match for the job?'},
                    {'role':'model', 'parts': resp}]
-    return {'Code': 200, 'Res': resp}
+    return {'Code': 200, 'Res': resp[0], 'Questions':resp[1]}
 
 
 @app.route('/api/v1/startChat', methods=['POST'])
@@ -110,12 +110,26 @@ def start_chat():
 
 @app.route('/api/v1/chat', methods=['POST'])
 def chat():
-    message = request.json['message']
-    try:
-        response = chatObj.send_message(message['content'])
-        return {'Code': 200, 'Res': response}
-    except():
-        return {'Code': 444, 'Res': "An error occurred."}
+    message = request.form.get['message']
+    if 'file'  in request.files:
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({"error": "No selected file"}), 400
+        
+        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+        file.save(file_path)
+        Stored_file = genai.upload_file(file_path)
+        try:
+            response = chatObj.msg_attachment(message, Stored_file)
+            return {'Code': 200, 'Res': response}
+        except():
+            return {'Code': 444, 'Res': "An error occurred."}
+    else:
+        try:
+            response = chatObj.send_message(message['content'])
+            return {'Code': 200, 'Res': response}
+        except():
+            return {'Code': 444, 'Res': "An error occurred."}
 
 
 @app.route('/api/v1/salary', methods=['POST'])

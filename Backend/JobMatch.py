@@ -21,8 +21,10 @@ def jobMatch(uri, resume):
     file = genai.get_file(resume)
 
     res = model.generate_content([file, 'Please review this resume and the job posting to see if the candidate described on the resume is a good match for the job. Please describe the reasoning for your choice. The job post: ' + soup.prettify()])
+    questions = model.generate_content('Provide some common interview questinos I may expect to see at an interview for this position:\n'+soup.prettify())
+
     print(res.text)
-    return res.text
+    return res.text, questions.text
 
 
 if(__name__ == '__main__'):

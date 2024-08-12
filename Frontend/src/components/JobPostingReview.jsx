@@ -48,6 +48,7 @@ export default function JobPostingReview() {
             console.log(response);
             setResp(response.data["Feedback"]);
             setFit(response.data["Fit"]);
+            setResp(response.data["Res"]);
             setQuestions(response.data["Questions"]);
             setJobUrl('');
             setFile(null);
