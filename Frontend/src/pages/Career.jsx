@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import './css/Career.css'; // Adjust path as needed
 
 function CareerPage() {
     const [careerTitle, setCareerTitle] = useState('');
     const [chatContent, setChatContent] = useState('');
+    const [file, setFile] = useState(null);
     const [salary, setSalary] = useState('');
     const [lineOfBusiness, setLineOfBusiness] = useState('');
     const [qualifications, setQualifications] = useState('');
@@ -12,13 +14,62 @@ function CareerPage() {
     const textareaRef = useRef(null); // Ref for the textarea
 
     const handleFileUpload = (event) => {
-        const file = event.target.files[0];
+        setFile(event)
         // Handle file upload logic here
     };
 
+    
+    const uri = '/api/v1/chat'
+    const dataURIs=[ '/api/v1/salary', '/api/v1/lob', 'api/v1/qualifications'];
+
+    
     const handleSubmit = async () => {
         setIsLoading(true); // Show spinner
         // Handle submit logic here
+
+        event.preventDefault();
+
+        const formData = new FormData();
+        if (file) formData.append('file', file);
+        if (userInput) formData.append('message', userInput);
+
+        const customHeader = {
+            headers: {
+                // Authorization: `Bearer ${getLocalStorageToken()}`,
+                "Content-Type": 'multipart/form-data',
+            },
+        };
+
+        try {
+            if(file || userInput){
+                const ChatResponse = await axios.post(uri, formData, customHeader);
+                console.log(ChatResponse);
+                setChatContent(ChatResponse.data['Res']);
+            }
+            const response = await axios.post(dataURIs[0], {
+                job: careerTitle
+            })
+            console.log(response);
+            setSalary(response.data['Res']);
+            const response1 = await axios.post(dataURIs[1], {
+                job: careerTitle
+            })
+            console.log(response1.data['Res']);
+            setLineOfBusiness(response1.data['Res']);
+            const response2 = await axios.post(dataURIs[2], {
+                job: careerTitle
+            })
+            console.log(response2);
+            setQualifications(response2.data['Res']);
+
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An error occurred while processing your request. Please try again.');
+        } finally {
+            setIsLoading(false); // Hide spinner
+
+        }
+
         console.log('Submitted:', userInput);
         setUserInput('');
         

@@ -62,9 +62,8 @@ def resume():
 
 @app.route('/api/v1/jobposting', methods=['POST'])
 def jobPost():
-    url = request.json['Joburl']
-    print(url)
-    response = jobPostParsing(url['content'])
+    url = request.form.get('Joburl')
+    response = jobPostParsing(url)
     latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[2]},
                    {'role':'model', 'parts': response[0]}]
     try: 
@@ -98,19 +97,19 @@ def JobMatch():
 
 @app.route('/api/v1/startChat', methods=['POST'])
 def start_chat():
-    from_content = request.json['origin']
-    if (from_content == '1'):
-        chatObj.cache(latestResume)
-    elif (from_content == '2'):
-        chatObj.cache(latestJob)
-    elif (from_content == '3'):
-        chatObj.cache(latestMatch)
-    return 200, 'Success'
+    chatObj.history = []
+    chatHistory = request.json['lastMsg']
+    print(chatHistory)
+    print(type(chatHistory))
+    if (chatHistory == ""):
+        return {'Code': 201, 'Res': 'Success'}
+    chatObj.history.append({'role':'model', 'parts':chatHistory})
+    return {'Code': 200, 'Res': chatObj.history, 'Input': chatHistory}
     #Now that we've checked the origin, we can start to chat. 
 
 @app.route('/api/v1/chat', methods=['POST'])
 def chat():
-    message = request.form.get['message']
+    message = request.form.get('message')
     if 'file'  in request.files:
         file = request.files['file']
         if file.filename == '':
@@ -126,7 +125,7 @@ def chat():
             return {'Code': 444, 'Res': "An error occurred."}
     else:
         try:
-            response = chatObj.send_message(message['content'])
+            response = chatObj.send_message(message)
             return {'Code': 200, 'Res': response}
         except():
             return {'Code': 444, 'Res': "An error occurred."}
@@ -135,20 +134,20 @@ def chat():
 @app.route('/api/v1/salary', methods=['POST'])
 def salary():
     job = request.json['job']
-    JobSalary = callGemi('What is the typical salary range for a' + job['content'])
-    return JobSalary
+    JobSalary = callGemi('What is the typical salary range for a' + job)
+    return {'Res': JobSalary}
 
 @app.route('/api/v1/lob', methods=['POST'])
 def LOB():
     job = request.json['job']
-    JobSalary = callGemi('What is the typical line of business for a' + job['content'])
-    return JobSalary
+    industry = callGemi('What is the typical line of business for a' + job)
+    return {'Res': industry}
 
 @app.route('/api/v1/qualifications', methods=['POST'])
 def qualifications():
     job = request.json['job']
-    JobSalary = callGemi('What are the typical qualifications need to be a' + job['content'])
-    return JobSalary
+    qual = callGemi('What are the typical qualifications need to be a' + job)
+    return {'Res': qual}
 
 #!Mostly for testing connections
 @app.route('/api/v1/json-data', methods=['GET'])
