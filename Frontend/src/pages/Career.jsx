@@ -19,8 +19,10 @@ function CareerPage() {
     };
 
     
-    const uri = '/api/v1/chat'
-    const dataURIs=[ '/api/v1/salary', '/api/v1/lob', 'api/v1/qualifications'];
+    const uri = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/chat'
+    const dataURIs=[ 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/salary', 
+    'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/lob', 
+    'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/qualifications'];
 
     
     const handleSubmit = async () => {
