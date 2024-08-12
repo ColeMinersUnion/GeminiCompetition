@@ -12,7 +12,7 @@ export default defineConfig({
       '/api':{
         target:'https://sprout-backend-khssbqm7ma-uk.a.run.app',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       }
 
     }
