@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './css/Career.css'; // Adjust path as needed
 
 function CareerPage() {
@@ -9,6 +9,7 @@ function CareerPage() {
     const [qualifications, setQualifications] = useState('');
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); // New state for loading
+    const textareaRef = useRef(null); // Ref for the textarea
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
@@ -25,6 +26,15 @@ function CareerPage() {
         setTimeout(() => {
             setIsLoading(false); // Hide spinner after simulation
         }, 2000);
+    };
+
+    // Auto-resize the textarea based on content
+    const handleInputChange = (event) => {
+        setUserInput(event.target.value);
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto';
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+        }
     };
 
     return (
@@ -44,12 +54,13 @@ function CareerPage() {
                     onChange={e => setChatContent(e.target.value)}
                     placeholder="Ask about careers..."
                 ></textarea>
-                <div className="input-bar">
+                <div className="chat-input-bar">
                     <input
-                        type="text"
+                        ref={textareaRef}
                         value={userInput}
                         onChange={e => setUserInput(e.target.value)}
                         placeholder="Type your message..."
+                        className="chat-input"
                     />
                     <label htmlFor="file-upload" className="file-upload-label">
                         📎
@@ -57,6 +68,7 @@ function CareerPage() {
                     <input
                         id="file-upload"
                         type="file"
+                        className="file-upload-input"
                         onChange={handleFileUpload}
                     />
                     <button className="submit-button" onClick={handleSubmit}>
