@@ -65,10 +65,10 @@ def jobPost():
     url = request.json['Joburl']
     print(url)
     response = jobPostParsing(url['content'])
-    latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[1]},
+    latestJob = [{'role':'user', 'parts': 'Summarize this job posting.\n' + response[2]},
                    {'role':'model', 'parts': response[0]}]
     try: 
-        return {'Code': 200, 'Res': response[0]}
+        return {'Code': 200, 'Res': response[0], 'Questions': response[1]}
     except(...):
         return 'Failed', 400
 
@@ -93,7 +93,7 @@ def JobMatch():
     resp = jobMatch(url, Stored_file.name)
     latestMatch = [{'role':'user', 'parts': 'Is the candidate a good match for the job?'},
                    {'role':'model', 'parts': resp}]
-    return {'Code': 200, 'Res': resp}
+    return {'Code': 200, 'Res': resp[0], 'Questions':resp[1]}
 
 
 @app.route('/api/v1/startChat', methods=['POST'])

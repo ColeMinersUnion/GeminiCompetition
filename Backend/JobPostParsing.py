@@ -19,8 +19,9 @@ def jobPostParsing(uri):
     soup = BeautifulSoup(response.text, 'html.parser')
     
     res = model.generate_content('Summarize this job posting.\n' + soup.prettify())
+    questions = model.generate_content('Provide some common interview questinos I may expect to see at an interview for this position:\n'+soup.prettify())
     print(res.text)
-    return res.text, soup.prettify()
+    return res.text, questions.text, soup.prettify()
 
 
 if(__name__ == '__main__'):

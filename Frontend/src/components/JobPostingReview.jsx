@@ -42,8 +42,7 @@ export default function JobPostingReview() {
         try {
             const response = await axios.post(uri, formData, customHeader);
             console.log(response)
-            setResp(response.data["Feedback"]);
-            setFit(response.data["Fit"]);
+            setResp(response.data["Res"]);
             setQuestions(response.data["Questions"]);
             setJobUrl('');
             setFile(null);
