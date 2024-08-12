@@ -39,7 +39,6 @@ export default function JobPostingReview() {
 
         const customHeader = {
             headers: {
-                // Authorization: `Bearer ${getLocalStorageToken()}`,
                 "Content-Type": 'multipart/form-data',
             },
         };
@@ -63,25 +62,33 @@ export default function JobPostingReview() {
 
     return (
         <div className="container">
-            <h2 className="subtitle">Here we can see if you're a fit for a job you found!</h2>
             <div className="main-content">
                 <div className="form-section">
+                    <h2 className="subtitle">Here we can see if you're a fit for a job you found!</h2>
                     <form>
                         <JobLinkInput onJobUrlChange={handleJobUrlChange} />
                         <ResumeInput onResumeChange={handleResumeChange} />
                         <button type="button" className="submit-button" onClick={handleSubmit}>
-                            Submit
+                            <h2>Submit</h2>
                         </button>
                     </form>
                 </div>
                 <div className="info-sections">
-                    <div className="fit-section">
-                        <h3 className="subtitle">Are you fit for the Job?</h3>
-                        <p>{fit || "Fit details will be displayed here..."}</p>
+                    <div className="info-box">
+                        <h3 className="info-title">Are you fit for the Job?</h3>
+                        <textarea
+                            className="info-textarea"
+                            value={fit}
+                            readOnly
+                        ></textarea>
                     </div>
-                    <div className="questions-section">
-                        <h3 className="subtitle">Possible Interview Questions:</h3>
-                        <p>{questions || "Possible interview questions will be displayed here..."}</p>
+                    <div className="info-box">
+                        <h3 className="info-title">Possible Interview Questions:</h3>
+                        <textarea
+                            className="info-textarea"
+                            value={questions}
+                            readOnly
+                        ></textarea>
                     </div>
                 </div>
             </div>
@@ -92,7 +99,7 @@ export default function JobPostingReview() {
                 </div>
             )}
 
-            <div className="main-feedback-container">
+            <div className="feedback-container">
                 <div className="feedback-section">
                     <h3 className="subtitle">AI Feedback</h3>
                     <textarea
@@ -118,7 +125,7 @@ export default function JobPostingReview() {
                                 className="file-upload-input"
                             />
                         </label>
-                        <button className="submit-button">Send</button>
+                        <button className="arrow-icon">↑</button>
                     </div>
                     {isLoading && <div className="spinner"></div>} {/* Spinner here */}
                 </div>

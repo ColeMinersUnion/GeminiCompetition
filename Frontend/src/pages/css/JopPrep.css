@@ -53,7 +53,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    color: #333; /* Consistent text color */
+    flex: 1;
     overflow: hidden; /* Prevents overflow beyond the box */
 }
 
@@ -147,19 +147,23 @@ body {
 
 /* Submit Button Styling */
 .submit-button {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
     background-color: #2c7a7b; /* Teal color */
+    color: white;
+    width: 70px; /* Same width as file upload button */
+    height: 50px; /* Same height as file upload button */
+    padding: 0; /* Remove extra padding */
+    font-size: auto; 
     border: none;
-    border-radius: 4px;
+    border-radius: 4px; /* Square shape */
     cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+    overflow: false;
 }
+
 
 .submit-button:hover {
     background-color: #285e61; /* Darker teal on hover */
@@ -173,6 +177,23 @@ body {
 .submit-button:disabled {
     background-color: #c0c0c0;
     cursor: not-allowed;
+}
+/* Arrow Icon Styling */
+.arrow-icon {
+    background-color: #2c7a7b; /* Teal color */
+    color: white;
+    width: 45px; /* Same width as file upload button */
+    height: 45px; /* Same height as file upload button */
+    padding: 0; /* Remove extra padding */
+    font-size: 1.5rem; /* Adjust font size to fit arrow */
+    border: none;
+    border-radius: 4px; /* Square shape */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
 }
 
 /* Error Message Styling */
