@@ -15,7 +15,7 @@ export default function JobPostingReview() {
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); // New state for loading
     const [chatted, setChatted] = useState(false);
-    let uri = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/jobMatch'; // Updated API endpoint
+    const uri = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/jobMatch'; // Updated API endpoint
 
     const handleJobUrlChange = (url) => {
         setJobUrl(url);
@@ -53,12 +53,12 @@ export default function JobPostingReview() {
                 setResp(response.data["Res"]);
                 setQuestions(response.data["Questions"]);
             } else if(file){
-                uri = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/resume';
-                const response = await axios.post(uri, formData, customHeader);
+                const uri1 = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/resume';
+                const response = await axios.post(uri1, formData, customHeader);
                 setResp(response.data["Res"]);
             } else if(jobUrl){
-                uri = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/jobposting';
-                const response = await axios.post(uri, formData, customHeader);
+                const uri2 = 'https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/jobposting';
+                const response = await axios.post(uri2, formData, customHeader);
                 setResp(response.data["Res"]);
                 setQuestions(response.data["Questions"]);
             }
