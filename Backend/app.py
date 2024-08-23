@@ -4,7 +4,7 @@ import datetime
 from GeminiAPI import callGemi
 from ResumeReview import resumeGemi
 from JobPostParsing import jobPostParsing
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from JobMatch import jobMatch
 import os
 from Chat import LiveChat
@@ -15,7 +15,9 @@ from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = './Database'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-#CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app, resources={r"/api": {"origins":"*"}})
 chatObj = LiveChat()
 latestResume = []
 latestJob = []
@@ -32,6 +34,7 @@ def allowed_file(filename):
 #? on said data. 
 
 @app.route('/api/v1/gemi', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def gemi():
     prompt = request.json['Prompt']
     #print(prompt['content'])
@@ -39,6 +42,7 @@ def gemi():
     return 'Success', 200
 
 @app.route('/api/v1/resume', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def resume():
     #chatgpt code
     if 'file' not in request.files:
@@ -61,6 +65,7 @@ def resume():
     return {'Code': 200, 'Res': response}
 
 @app.route('/api/v1/jobposting', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def jobPost():
     url = request.form.get('Joburl')
     response = jobPostParsing(url)
@@ -72,6 +77,7 @@ def jobPost():
         return 'Failed', 400
 
 @app.route('/api/v1/jobMatch', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def JobMatch():
     
     
@@ -96,6 +102,7 @@ def JobMatch():
 
 
 @app.route('/api/v1/startChat', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def start_chat():
     chatObj.history = []
     chatHistory = request.json['lastMsg']
@@ -108,6 +115,7 @@ def start_chat():
     #Now that we've checked the origin, we can start to chat. 
 
 @app.route('/api/v1/chat', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def chat():
     message = request.form.get('message')
     if 'file'  in request.files:
@@ -132,18 +140,21 @@ def chat():
 
 
 @app.route('/api/v1/salary', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def salary():
     job = request.json['job']
     JobSalary = callGemi('What is the typical salary range for a' + job)
     return {'Res': JobSalary}
 
 @app.route('/api/v1/lob', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def LOB():
     job = request.json['job']
     industry = callGemi('What is the typical line of business for a' + job)
     return {'Res': industry}
 
 @app.route('/api/v1/qualifications', methods=['POST'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def qualifications():
     job = request.json['job']
     qual = callGemi('What are the typical qualifications need to be a' + job)
@@ -151,6 +162,7 @@ def qualifications():
 
 #!Mostly for testing connections
 @app.route('/api/v1/json-data', methods=['GET'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def get_now():
     myDict = {"time":datetime.datetime.now(), "author":"Cole Hansen"}
     return myDict #This issue I was having was using json.dumps instead of jsonify
