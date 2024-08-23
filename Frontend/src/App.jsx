@@ -11,7 +11,7 @@ function App() {
   function getData() {
     axios({
       method: "GET",
-      url: "/api/v1/json-data"
+      url: "https://sprout-backend-khssbqm7ma-uk.a.run.app/api/v1/json-data"
     }).then((response) => {
       const res = response.data;
       setProfileData({
